@@ -36,9 +36,12 @@ def strings():
     p = Point(2, 3)
     print("Object {0!r} = {0}".format(p))
 
+    coord = (3, 5)
+    print('X: {0[0]};  Y: {0[1]}'.format(coord))
+
 
 def main():
-    """The main program call the training sessions"""
+    """The main program calls the training sessions"""
     strings()
 
 
