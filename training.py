@@ -10,6 +10,7 @@
         - Python 3.8 reference
 """
 
+from sys import argv
 import exercices
 
 
@@ -20,11 +21,15 @@ def main():
     functions from the "exercises" module.
     """
 
-    # Extract functions whose name does not start with '_' from module
-    functions = filter(
-        lambda s: type(getattr(exercices, s)) == type(main) and not s.startswith('_'),
-        dir(exercices)
-    )
+    # Basic argument parsing
+    if len(argv) > 1:
+        functions = [argv[1]]
+    else:
+        # Extract functions whose name does not start with '_' from module
+        functions = filter(
+            lambda s: type(getattr(exercices, s)) == type(main) and not s.startswith('_'),
+            dir(exercices)
+        )
 
     print("List of exercises:")
     for func_name in functions:
