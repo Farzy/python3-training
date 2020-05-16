@@ -16,9 +16,24 @@ import exercices
 def main():
     """The main program calls the training sessions"""
 
-    exercices.strings()
-    exercices.lists()
-    exercices.fib()
+    functions = [
+        exercices.strings,
+        exercices.lists,
+        exercices.fib,
+    ]
+
+    print("List of exercices:")
+    for f in functions:
+        name = f.__name__
+        doc = f.__doc__.splitlines()[0]
+        l = len(name) + len(doc)
+        print()
+        print("+" + "-" * (l + 4) + "+")
+        print(f"| {name}: {doc} |")
+        print("+" + "-" * (l + 4) + "+")
+        print()
+
+        f()
 
 
 if __name__ == '__main__':
