@@ -14,7 +14,11 @@ import exercices
 
 
 def main():
-    """The main program calls the training sessions"""
+    """The main program calls the training sessions
+
+    This function uses Python's introspection in order to extract the list of
+    functions from the "exercises" module.
+    """
 
     # Extract functions whose name does not start with '_' from module
     functions = filter(
