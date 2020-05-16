@@ -2,7 +2,7 @@
 """
 
 import datetime
-
+import math
 
 def strings():
     """Training on strings
@@ -122,3 +122,19 @@ def iterators():
     r = range(0, 10)
     print(f"Range as iterator = {r}")
     print(f"Range as list = {list(r)}")
+
+
+def control_structures():
+    """Test some features of control structures
+
+    Reference: https://docs.python.org/3.8/tutorial/controlflow.html
+    """
+
+    # "else"
+    for n in range(2, 10):
+        for i in range(2, int(n / 2) + 1):
+            if (n % i) == 0:
+                print(f"{i} is a divisor of {n}.")
+                break
+        else:
+            print(f"{n} is a prime number!")
