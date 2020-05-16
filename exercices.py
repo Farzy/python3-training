@@ -3,6 +3,8 @@
 
 import datetime
 import math
+from time import sleep
+
 
 def strings():
     """Training on strings
@@ -138,3 +140,40 @@ def control_structures():
                 break
         else:
             print(f"{n} is a prime number!")
+
+    def fib2(n):
+        """Return a list containing the Fibonacci series up to n"""
+
+        result = []
+        a, b = 1, 1
+        while a < n:
+            result.append(a)
+            a, b = b, a + b
+        return result
+
+    n = 10000
+    r = fib2(n)
+    print(f'fib2(n) = {r}')
+
+    def change_param(a, b):
+        a.append('Gotcha!')
+        b += 1
+
+    arr = ['a', 'b']
+    num = 42
+    print(f"Before call to change_param: arr: {arr}, num: {num}")
+    change_param(arr, num)
+    print(f"After call to change_param: arr: {arr}, num: {num}")
+
+    # Test default values
+    def test_cache(a, _cache=[]):
+        """Simulate a very basic (and WRONG) memoizing function"""
+        if len(_cache) == 0:
+            # Do lenghty calculation
+            print("In test_cache, doing calculation…")
+            sleep(2)
+            _cache.append(42 + a)
+        return _cache[0]
+
+    print(f"Calling test_cache once: {test_cache(2)}")
+    print(f"Calling test_cache twice: {test_cache(3)}")
