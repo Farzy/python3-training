@@ -10,6 +10,8 @@
         - Python 3.8 reference
 """
 
+import datetime
+
 
 def strings():
     """Training on strings"""
@@ -38,6 +40,42 @@ def strings():
 
     coord = (3, 5)
     print('X: {0[0]};  Y: {0[1]}'.format(coord))
+
+    print("repr() shows quotes: {!r}; str() doesn't: {!s}".format('test1', 'test2'))
+
+    print('{:<30}'.format('left aligned'))
+    print('{:>30}'.format('right aligned'))
+    print('{:^30}'.format('centered'))
+    print('{:*^30}'.format('centered'))  # use '*' as a fill char
+
+    print('{:+f}, {:+f}'.format(3.14, -3.14))
+    print('{: f}, {: f}'.format(3.14, -3.14))
+    print('{:-f}, {:-f}'.format(3.14, -3.14))
+
+    print('int: {0:d}, hex: {0:08x}, oct: {0:o}, bin: {0:010b}'.format(42))
+    print('int: {0:#d}, hex: {0:#08x}, oct: {0:#o}, bin: {0:#010b}'.format(42))
+
+    print('{:,}'.format(1234567890))
+    print('{:_}'.format(1234567890))  # IntelliJ complains but this format is supported
+
+    point = 19
+    total = 22
+    print('Correct answers: {:.2%}'.format(point / total))
+
+    d = datetime.datetime(2010, 7, 14, 12, 15, 58)
+    print('{:%Y-%m-%d %H:%M:%S}'.format(d))
+
+    for align, text in zip('<^>', ['left', 'center', 'right']):
+        print('{0:{fill}{align}16}'.format(text, fill=align, align=align))
+
+    octets = [192, 168, 0, 1]
+    print('{:02X}.{:02X}.{:02X}.{:02X}'.format(*octets))
+
+    width = 6
+    for num in range(5, 20):
+        for base in 'dXob':
+            print('{0:{width}{base}}'.format(num, width=width, base=base), end=' ')
+        print()
 
 
 def main():
