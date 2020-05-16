@@ -16,14 +16,15 @@ import exercices
 def main():
     """The main program calls the training sessions"""
 
-    functions = [
-        exercices.strings,
-        exercices.lists,
-        exercices.fib,
-    ]
+    # Extract functions whose name does not start with '_' from module
+    functions = filter(
+        lambda s: type(getattr(exercices, s)) == type(main) and not s.startswith('_'),
+        dir(exercices)
+    )
 
-    print("List of exercices:")
-    for f in functions:
+    print("List of exercises:")
+    for func_name in functions:
+        f = getattr(exercices, func_name)
         name = f.__name__.capitalize()
         doc = f.__doc__.splitlines()[0]
         title_length = len(name) + len(doc)
