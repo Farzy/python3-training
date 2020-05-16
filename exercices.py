@@ -113,3 +113,12 @@ def fib():
         a, b = b, a + b
         print(a, end=', ')
     print()
+
+
+def iterators():
+    """Some iterators"""
+
+    # Get a list out of an iterator
+    r = range(0, 10)
+    print(f"Range as iterator = {r}")
+    print(f"Range as list = {list(r)}")
