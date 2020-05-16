@@ -131,7 +131,7 @@ def control_structures():
     """
 
     # "else"
-    for n in range(2, 10):
+    for n in range(2, 20):
         for i in range(2, int(n / 2) + 1):
             if (n % i) == 0:
                 print(f"{i} is a divisor of {n}.")
