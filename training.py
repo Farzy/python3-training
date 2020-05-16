@@ -24,9 +24,9 @@ def main():
 
     print("List of exercises:")
     for func_name in functions:
-        f = getattr(exercices, func_name)
-        name = f.__name__.capitalize()
-        doc = f.__doc__.splitlines()[0]
+        f = getattr(exercices, func_name)   # Function object
+        name = f.__name__.capitalize()      # Function name
+        doc = f.__doc__.splitlines()[0]     # First line of function documentation
         title_length = len(name) + len(doc)
         print()
         print("+" + "-" * (title_length + 4) + "+")
