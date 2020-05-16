@@ -111,10 +111,23 @@ def lists():
     print(f"Len {letters} = {len(letters)}")
 
 
+def fib():
+    """Fibonacci numbers
+
+    Reference: https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming
+    """
+    a, b = 0, 1
+    while a < 100:
+        a, b = b, a + b
+        print(a, end=', ')
+    print()
+
+
 def main():
     """The main program calls the training sessions"""
     strings()
     lists()
+    fib()
 
 
 if __name__ == '__main__':
