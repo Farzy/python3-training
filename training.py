@@ -24,7 +24,7 @@ def main():
 
     print("List of exercices:")
     for f in functions:
-        name = f.__name__
+        name = f.__name__.capitalize()
         doc = f.__doc__.splitlines()[0]
         l = len(name) + len(doc)
         print()
