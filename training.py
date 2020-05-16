@@ -26,11 +26,11 @@ def main():
     for f in functions:
         name = f.__name__.capitalize()
         doc = f.__doc__.splitlines()[0]
-        l = len(name) + len(doc)
+        title_length = len(name) + len(doc)
         print()
-        print("+" + "-" * (l + 4) + "+")
+        print("+" + "-" * (title_length + 4) + "+")
         print(f"| {name}: {doc} |")
-        print("+" + "-" * (l + 4) + "+")
+        print("+" + "-" * (title_length + 4) + "+")
         print()
 
         f()
