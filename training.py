@@ -14,7 +14,11 @@ import datetime
 
 
 def strings():
-    """Training on strings"""
+    """Training on strings
+
+    Reference: https://docs.python.org/3/tutorial/introduction.html#strings
+    """
+
     print("{0}, {1}, {2}".format('a', 'b', 'c'))
     print("{}, {}, {}".format('a', 'b', 'c'))
     print("{1}, {0}, {2}".format('a', 'b', 'c'))
@@ -78,9 +82,39 @@ def strings():
         print()
 
 
+def lists():
+    """Traning on lists
+
+    Reference: https://docs.python.org/3/tutorial/introduction.html#lists
+    """
+
+    squares = [1, 4, 9, 16, 25]
+    # Shallow copy
+    squares_copy = squares[:]
+
+    cubes = [1, 8, 27, 65, 125]
+    cubes[3] = 64
+    cubes.append(216)
+    cubes.append(7 ** 3)
+
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    print(letters)
+    letters[2:5] = ['C', 'D', 'E']
+    print(letters)
+    letters[2:5] = []
+    print(letters)
+    # Clear list
+    letters[:] = []
+    print(letters)
+
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    print(f"Len {letters} = {len(letters)}")
+
+
 def main():
     """The main program calls the training sessions"""
     strings()
+    lists()
 
 
 if __name__ == '__main__':
