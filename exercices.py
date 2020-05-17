@@ -25,6 +25,9 @@ def strings():
     print("The complex number {0} if formed of the real part {0.real} and the imaginary part {0.imag}".format(c))
 
     class Point:
+        """
+        Test class for __str__ implementation
+        """
         def __init__(self, x, y):
             self.x, self.y = x, y
 
