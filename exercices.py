@@ -291,6 +291,9 @@ def control_structures():
 
     # Call annotated function
     func_annotations('spam')
+    # These would hint warnings in IntelliJ
+    # func_annotations(42)
+    # x = func_annotations('bacon') + 4
 
 
 # Function Annotations
