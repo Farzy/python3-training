@@ -55,6 +55,7 @@ def strings():
     print('int: {0:#d}, hex: {0:#08x}, oct: {0:#o}, bin: {0:#010b}'.format(42))
 
     print('{:,}'.format(1234567890))
+    # noinspection PyStringFormat
     print('{:_}'.format(1234567890))  # IntelliJ complains but this format is supported
 
     point = 19
@@ -168,6 +169,7 @@ def control_structures():
     print(f"After call to change_param: arr: {arr}, num: {num}")
 
     # Test default values
+    # noinspection PyDefaultArgument
     def test_cache(a, _cache=[]):
         """Simulate a very basic (and WRONG) memoizing function"""
         if len(_cache) == 0:
