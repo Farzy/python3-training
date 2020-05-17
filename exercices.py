@@ -272,3 +272,9 @@ def control_structures():
     # Same with dictionary
     d = {"voltage": "four million", "state": "bleedin' demised", "action": "VOOM"}
     parrot(**d)
+
+    # Lambda
+    pairs = [(1, "one"), (2, "two"), (3, "three"), (4, "four")]
+    print("Pairs before sorting: ", pairs)
+    pairs.sort(key=lambda pair: pair[1])
+    print("Pairs after sorting with lambda", pairs)
