@@ -258,3 +258,13 @@ def control_structures():
     # This works because in foo2() we're forcing the first parameter to
     # be positional only
     foo2('toto', **{'name': 42, 'z': 0})
+
+    # Unpacking argument lists
+    print("Range: ", list(range(3, 6)))  # Normal call with separate arguments
+    args = [3, 6]
+    print("Range: ", list(range(*args)))  # Call with arguments unpacked from a list
+    try:
+        args = [3, 6, 42, 27]
+        print("Range: ", list(range(*args)))  # Won't work: too many arguments
+    except TypeError:
+        pass
