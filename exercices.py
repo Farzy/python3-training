@@ -444,3 +444,31 @@ def data_structures():
     print("Matrix:", matrix)
     print("Transposed matrix", [[row[i] for row in matrix] for i in range(4)])
     print("Transposed matrix with zip:", list(zip(*matrix)))
+
+    # Tuples
+    empty = ()
+    singleton = "one",
+    print("empty tuple:", empty)
+    print("singleton tuple:", singleton)
+    t = tuple(range(5))
+    print("tuple:", t)
+    a, b, c, d, e = t
+    print("unpacked tuple:", a, b, c, d, e)
+
+    # Sets
+    basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+    print("set:", basket)
+    print("orange in basket:", 'orange' in basket)
+    print("crabgrass in basket:", 'crabgrass' in basket)
+
+    a = set('abracadabra')
+    b = set('alacazam')
+    print("sets a & b:", a, "&", b)
+    print("a - b:", a - b)
+    print("a | b", a | b)
+    print("a & b", a & b)
+    print("a ^ b", a ^ b)
+
+    # Set comprehensions
+    a = {x for x in 'abracadabra' if x not in 'abc'}
+    print("Set comprehension result:", a)
