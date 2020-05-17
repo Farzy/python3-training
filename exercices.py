@@ -341,3 +341,40 @@ def func_annotations(ham: str, eggs: str = 'eggs') -> str:
     print("Annotations: ", func_annotations.__annotations__)
     print("Arguments:", ham, eggs)
     return ham + ' and ' + eggs
+
+
+def data_structures():
+    """
+    Experiment with data structures: list, tuple, array, set…
+
+    :return:
+    """
+
+    a = []
+    print("Empty list:", a)
+    a.append(1)
+    print("Append 1:", a)
+    a.extend(range(2, 20))
+    print("Extend by a range:", a)
+    a.insert(10, 42)
+    print("Insert 42 in position 10:", a)
+    a.remove(10)
+    print("Remove number 10:", a)
+    n = a.pop(12)
+    print("Pop", n, "at position 12:", a)
+    a.clear()
+    print("Clear:", n)
+    a = [10, 42, -5, 0, 3, 7, 9, 42]
+    print("Recreate:", a)
+    n = a.index(42, 2)
+    print("Found 42 from slice [2:] at position", n, ":", a)
+    n = a.count(42)
+    print("Found 42", n, "times in the list:", a)
+    a.sort(reverse=True)
+    print("Reverse sort:", a)
+    a.reverse()
+    print("Reverse", a)
+    b = a.copy()
+    print("b is a copy():", b, ". id(a) =", id(a), "but id(b) =", id(b))
+    c = a
+    print("But c=a IS a", ". id(a) =", id(a), "and id(c) =", id(c))
