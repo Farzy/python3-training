@@ -472,3 +472,21 @@ def data_structures():
     # Set comprehensions
     a = {x for x in 'abracadabra' if x not in 'abc'}
     print("Set comprehension result:", a)
+
+    # Dictionnary
+    tel = {'jack': 4098, 'sape': 4139}
+    print("dict:", tel)
+    tel['guido'] = 4127
+    print("add to dict:", tel)
+    del tel['sape']
+    print("delete 'sape' from dict", tel)
+    tel['irv'] = 4127
+    print("add irv to dict", tel)
+    print("dict keys in order:", list(tel))
+    print("dict keys sorted:", sorted(tel))
+    print("'guido' in dict:", 'guido' in tel)
+    print("'sape' in dict:", 'sape' in tel)
+
+    print("dict from tuples:", dict([('sape', 4139), ('guido', 4127), ('jack', 4098)]))
+
+    print("dict comprehension", {x: x ** 2 for x in range(6)})
