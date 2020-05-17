@@ -268,3 +268,7 @@ def control_structures():
         print("Range: ", list(range(*args)))  # Won't work: too many arguments
     except TypeError:
         pass
+
+    # Same with dictionary
+    d = {"voltage": "four million", "state": "bleedin' demised", "action": "VOOM"}
+    parrot(**d)
