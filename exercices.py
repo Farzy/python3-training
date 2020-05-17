@@ -147,12 +147,12 @@ def control_structures():
         else:
             print(f"{n} is a prime number!")
 
-    def fib2(n):
+    def fib2(m):
         """Return a list containing the Fibonacci series up to n"""
 
         result = []
         a, b = 1, 1
-        while a < n:
+        while a < m:
             result.append(a)
             a, b = b, a + b
         return result
@@ -162,6 +162,15 @@ def control_structures():
     print(f'fib2(n) = {r}')
 
     def change_param(a, b):
+        """
+        Modify parameter "a" which is an object.
+
+        "b", which is an integer, cannot be changed.
+
+        :param a:
+        :param b:
+        :return:
+        """
         a.append('Gotcha!')
         b += 1
 
@@ -186,7 +195,10 @@ def control_structures():
     print(f"Calling test_cache twice: {test_cache(3)}")
 
     # Keyword arguments
+    # noinspection PyShadowingBuiltins
     def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
+        """Test keyword arguments"""
+
         print("-- This parrot wouldn't", action, end=' ')
         print("if you put", voltage, "volts through it.")
         print("-- Lovely plumage, the", type)
@@ -205,6 +217,15 @@ def control_structures():
     # parrot(actor='John Cleese')
 
     def cheeseshop(kind, *arguments, **keywords):
+        """
+        Test keyword arguments and array.
+
+        :param kind:
+        :param arguments:
+        :param keywords:
+        :return:
+        """
+
         print("-- Do you have any", kind, "?")
         print("-- I'm sorry, we're all out of", kind)
         for arg in arguments:
@@ -220,15 +241,23 @@ def control_structures():
                sketch="Cheese Shop Sketch")
 
     def standard_arg(arg):
+        """Test positional or keyword argument"""
+
         print(arg)
 
     def pos_only_arg(arg, /):
+        """Test positional only argument"""
+
         print(arg)
 
     def kwd_only_arg(*, arg):
+        """Test keyword only argument"""
+
         print(arg)
 
     def combined_example(pos_only, /, standard, *, kwd_only):
+        """Combine all 3 types"""
+
         print(pos_only, standard, kwd_only)
 
     standard_arg("Test standard_arg")
@@ -253,9 +282,14 @@ def control_structures():
 
     # noinspection PyUnusedLocal
     def foo(name, **kwargs):
+        """Test keyword arguments"""
+
         return 'name' in kwargs
 
+    # noinspection PyUnusedLocal
     def foo2(name, /, **kwargs):
+        """Test keyword arguments"""
+
         return 'name' in kwargs
 
     # This won't work because "name" always bind to the first argument and
@@ -308,4 +342,3 @@ def func_annotations(ham: str, eggs: str = 'eggs') -> str:
     print("Annotations: ", func_annotations.__annotations__)
     print("Arguments:", ham, eggs)
     return ham + ' and ' + eggs
-
