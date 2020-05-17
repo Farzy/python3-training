@@ -3,6 +3,7 @@
 
 import datetime
 from time import sleep
+from collections import deque
 
 
 def strings():
@@ -378,3 +379,13 @@ def data_structures():
     print("b is a copy():", b, ". id(a) =", id(a), "but id(b) =", id(b))
     c = a
     print("But c=a IS a", ". id(a) =", id(a), "and id(c) =", id(c))
+
+    # Queue
+    queue = deque(['Eric', 'John', 'Michael'])
+    print(queue)
+    queue.append("Terry")
+    queue.append("Graham")
+    print(queue)
+    print(queue.popleft())
+    print(queue.popleft())
+    print(queue)
