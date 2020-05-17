@@ -241,3 +241,16 @@ def control_structures():
     # combined_example(post_only="Test combined_example 1",
     #                  standard="Test combined_example 2",
     #                  kwd_only="Test combined_example 3")
+
+    def foo(name, **kwargs):
+        return 'name' in kwargs
+
+    def foo2(name, /, **kwargs):
+        return 'name' in kwargs
+
+    try:
+        foo('toto', **{'name': 42, 'z': 0})
+    except TypeError:
+        pass
+
+    foo2('toto', **{'name': 42, 'z': 0})
