@@ -220,8 +220,8 @@ def control_structures():
     def kwd_only_arg(*, arg):
         print(arg)
 
-    def combined_example(post_only, /, standard, *, kwd_only):
-        print(post_only, standard, kwd_only)
+    def combined_example(pos_only, /, standard, *, kwd_only):
+        print(pos_only, standard, kwd_only)
 
     standard_arg("Test standard_arg")
     standard_arg(arg="Test standard_arg")
@@ -248,9 +248,13 @@ def control_structures():
     def foo2(name, /, **kwargs):
         return 'name' in kwargs
 
+    # This won't work because "name" always bind to the first argument and
+    # cannot be reuse as a keyword argument
     try:
         foo('toto', **{'name': 42, 'z': 0})
     except TypeError:
         pass
 
+    # This works because in foo2() we're forcing the first parameter to
+    # be positional only
     foo2('toto', **{'name': 42, 'z': 0})
