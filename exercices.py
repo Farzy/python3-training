@@ -1,7 +1,6 @@
 """All exercices go in this file.
 """
 
-
 import datetime
 from time import sleep
 
