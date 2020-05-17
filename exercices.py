@@ -389,3 +389,16 @@ def data_structures():
     print(queue.popleft())
     print(queue.popleft())
     print(queue)
+
+    # List comprehensions
+    print("List comprehensions:")
+    x = 42
+    squares = []
+    for x in range(10):
+        squares.append(x ** 2)
+    print("Unnecessary variable 'x' remains and erased previous value: ", x)
+    print("squares:", squares)
+    squares = list(map(lambda x: x ** 2, range(10)))
+    print("squares:", squares)
+    squares = [x ** 2 for x in range(10)]
+    print("squares:", squares)
