@@ -21,13 +21,14 @@ def strings():
     coord = {'latitude': '37.24N', 'longitude': '-115.81W'}
     print("Coordinates: {latitude}, {longitude}".format(**coord))
 
-    c = 3-5j
+    c = 3 - 5j
     print("The complex number {0} if formed of the real part {0.real} and the imaginary part {0.imag}".format(c))
 
     class Point:
         """
         Test class for __str__ implementation
         """
+
         def __init__(self, x, y):
             self.x, self.y = x, y
 
@@ -86,6 +87,7 @@ def lists():
 
     squares = [1, 4, 9, 16, 25]
     # Shallow copy
+    # noinspection PyUnusedLocal
     squares_copy = squares[:]
 
     cubes = [1, 8, 27, 65, 125]
@@ -243,10 +245,12 @@ def control_structures():
     combined_example("Test combined_example 1",
                      standard="Test combined_example 2",
                      kwd_only="Test combined_example 3")
+
     # combined_example(post_only="Test combined_example 1",
     #                  standard="Test combined_example 2",
     #                  kwd_only="Test combined_example 3")
 
+    # noinspection PyUnusedLocal
     def foo(name, **kwargs):
         return 'name' in kwargs
 
