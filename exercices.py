@@ -211,3 +211,25 @@ def control_structures():
                shopkeeper="Michael Palin",
                client="John Cleese",
                sketch="Cheese Shop Sketch")
+
+    def standard_arg(arg):
+        print(arg)
+
+    def pos_only_arg(arg, /):
+        print(arg)
+
+    def kwd_only_arg(*, arg):
+        print(arg)
+
+    def combined_example(post_only, /, standard, *, kwd_only):
+        print(post_only, standard, kwd_only)
+
+    standard_arg("Test standard_arg")
+    standard_arg(arg="Test standard_arg")
+    pos_only_arg("Test pos_only_arg")
+    # pos_only_arg(arg="Test pos_only_arg")
+    # kwd_only_arg("Test kwd_only_arg")
+    kwd_only_arg(arg="Test kwd_only_arg")
+    # combined_example("Test combined_example 1",
+    #                  "Test combined_example 2",
+    #                  "Test combined_example 3")
