@@ -1,6 +1,7 @@
 """All exercices go in this file.
 """
 
+
 import datetime
 from time import sleep
 
@@ -287,3 +288,21 @@ def control_structures():
     print("Pairs before sorting: ", pairs)
     pairs.sort(key=lambda pair: pair[1])
     print("Pairs after sorting with lambda", pairs)
+
+    # Call annotated function
+    func_annotations('spam')
+
+
+# Function Annotations
+def func_annotations(ham: str, eggs: str = 'eggs') -> str:
+    """
+    Test Function Annotations
+
+    :param ham: Some Ham
+    :param eggs: Some eggs
+    :return: Delicious breakfast
+    """
+    print("Annotations: ", func_annotations.__annotations__)
+    print("Arguments:", ham, eggs)
+    return ham + ' and ' + eggs
+
