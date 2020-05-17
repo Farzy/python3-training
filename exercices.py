@@ -2,7 +2,6 @@
 """
 
 import datetime
-import math
 from time import sleep
 
 
@@ -233,3 +232,12 @@ def control_structures():
     # combined_example("Test combined_example 1",
     #                  "Test combined_example 2",
     #                  "Test combined_example 3")
+    combined_example("Test combined_example 1",
+                     "Test combined_example 2",
+                     kwd_only="Test combined_example 3")
+    combined_example("Test combined_example 1",
+                     standard="Test combined_example 2",
+                     kwd_only="Test combined_example 3")
+    # combined_example(post_only="Test combined_example 1",
+    #                  standard="Test combined_example 2",
+    #                  kwd_only="Test combined_example 3")
