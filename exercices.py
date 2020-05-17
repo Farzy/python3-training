@@ -391,6 +391,7 @@ def data_structures():
     print(queue)
 
     # List comprehensions
+
     print("List comprehensions:")
     x = 42
     squares = []
@@ -402,3 +403,44 @@ def data_structures():
     print("squares:", squares)
     squares = [x ** 2 for x in range(10)]
     print("squares:", squares)
+
+    # The loop are embedded in the order they are written.
+    # Here the "y" loops continuously between each "x" loop.
+    a = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
+    print(a)
+
+    # Simulate map() in better
+    vec = [-4, -2, 0, 2, 4]
+    print("vec:", vec)
+    print("vec * 2:", [x * 2 for x in vec])
+
+    # Implement filter()
+    print("filter vec >= 0:", [x for x in vec if x >= 0])
+
+    # apply a function
+    print("abs(vec):", [abs(x) for x in vec])
+
+    # Call a method on each element
+    freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']
+    print("Fruits:", freshfruit)
+    print("Fruits stripped:", [fruit.strip() for fruit in freshfruit])
+
+    # Create a list of 2-tuples from a range
+    print("2-tuples from a range:", [(x, x ** 3) for x in range(6)])
+    # This won't work
+    # [x, x**3 for x in range(6)]
+
+    # Flatten a list using a listcomp with 2 'for'
+    vec = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    print("Flatten list:", [num for elem in vec for num in elem])
+
+    # Nested list comprehensions
+    matrix = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+    ]
+
+    print("Matrix:", matrix)
+    print("Transposed matrix", [[row[i] for row in matrix] for i in range(4)])
+    print("Transposed matrix with zip:", list(zip(*matrix)))
