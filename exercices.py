@@ -2,6 +2,7 @@
 """
 
 import datetime
+import sys
 from time import sleep
 from collections import deque
 
@@ -510,3 +511,77 @@ def data_structures():
     basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
     for f in sorted(set(basket)):
         print(f)
+
+
+def exceptions():
+    """Experiment with exceptions"""
+
+    class B(Exception):
+        pass
+
+    class C(B):
+        pass
+
+    class D(C):
+        pass
+
+    print("Catch exception in the correct order:")
+    for cls in [B, C, D]:
+        try:
+            raise cls()
+        except D:
+            print("Caught exception D.")
+        except C:
+            print("Caught exception C.")
+        except B:
+            print("Caught exception B.")
+
+    print("Revert the 'except:' order:")
+    for cls in [B, C, D]:
+        try:
+            raise cls()
+        except B:
+            print("Caught exception B.")
+        except C:
+            print("Caught exception C.")
+        except D:
+            print("Caught exception D.")
+
+    # Raise first exceptio
+    try:
+        f = open('myfile.txt')
+        s = f.readline()
+        i = int(s.strip())
+    except OSError as err:
+        print(f"OS error: {err}")
+    except ValueError:
+        print("Could not convert data to an integer.")
+    except:
+        print("Unexpected error:", sys.exc_info())
+        raise
+
+    # Raise second exception
+    try:
+        f = open('fibo.py')
+        s = f.readline()
+        i = int(s.strip())
+    except OSError as err:
+        print(f"OS error: {err}")
+    except ValueError:
+        print("Could not convert data to an integer.")
+    except:
+        print("Unexpected error:", sys.exc_info())
+        raise
+
+    # Raise third exception
+    try:
+        f = open('fibo.py')
+        s = f.readline()
+        i = 1 / 0
+    except OSError as err:
+        print(f"OS error: {err}")
+    except ValueError:
+        print("Could not convert data to an integer.")
+    except:
+        print("Unexpected error:", sys.exc_info())
+        #raise
