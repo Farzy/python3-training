@@ -536,7 +536,7 @@ def exceptions():
         except B:
             print("Caught exception B.")
 
-    print("Revert the 'except:' order:")
+    print("\nRevert the 'except:' order:")
     for cls in [B, C, D]:
         try:
             raise cls()
@@ -547,7 +547,7 @@ def exceptions():
         except D:
             print("Caught exception D.")
 
-    # Raise first exceptio
+    print("\nRaise first exception:")
     try:
         f = open('myfile.txt')
         s = f.readline()
@@ -560,7 +560,7 @@ def exceptions():
         print("Unexpected error:", sys.exc_info())
         raise
 
-    # Raise second exception
+    print("\nRaise second exception:")
     try:
         f = open('fibo.py')
         s = f.readline()
@@ -573,7 +573,7 @@ def exceptions():
         print("Unexpected error:", sys.exc_info())
         raise
 
-    # Raise third exception
+    print("\nRaise third exception:")
     try:
         f = open('fibo.py')
         s = f.readline()
@@ -584,4 +584,15 @@ def exceptions():
         print("Could not convert data to an integer.")
     except:
         print("Unexpected error:", sys.exc_info())
-        #raise
+        # raise
+
+    print("\nArguments to Exceptions:")
+    try:
+        raise Exception('spam', 'eggs')
+    except Exception as inst:
+        print("Type:", type(inst))
+        print("Args:", inst.args)
+        print("Exception:", inst)
+        x, y = inst.args
+        print("x = ", x)
+        print("y = ", y)
