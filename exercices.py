@@ -596,3 +596,67 @@ def exceptions():
         x, y = inst.args
         print("x = ", x)
         print("y = ", y)
+
+    class Error(Exception):
+        """Base class for exceptions in this module"""
+        pass
+
+    class InputError(Error):
+        """Exception raised for errors in input
+
+        Attributes:
+            expression -- input expression in which the error occurred
+            message -- explanation of the error
+        """
+
+        def __init__(self, expression, message):
+            self.expression = expression
+            self.message = message
+
+    class TransitionError(Error):
+        """Raised when an operation attemps a state transition that's not
+        allowed.
+
+        Attributes:
+            previous -- state at beginning of transition
+            next -- attempted new state
+            message -- explanation of why the specific transition is not allowed
+        """
+
+        def __init__(self, previous, next, message):
+            self.previous = previous
+            self.next = next
+            self.message = message
+
+    print("\nFinally:")
+    try:
+        try:
+            raise KeyboardInterrupt
+        finally:
+            print('Goodbye, world!')
+    except BaseException:
+        pass
+
+    def bool_return():
+        """The "finally" return statement override the main one."""
+        try:
+            return True
+        finally:
+            return False
+    assert bool_return() == False
+
+    def divide(x, y):
+        try:
+            result = x / y
+        except ZeroDivisionError:
+            print("Division by zero!")
+        else:
+            print("Result is", result)
+        finally:
+            print("Executing finally clause")
+    divide(2, 1)
+    divide(2, 0)
+    try:
+        divide("2", "1")
+    except TypeError as e:
+        print("Caught exception:", e)
