@@ -685,3 +685,26 @@ def scopes():
 
     scope_test()
     print("In global scope:", spam)
+
+def classes():
+    """Class manipulation"""
+
+    # A class created in an "if" is available outside of the test
+    a = 1
+    if a == 1:
+        class Foo:
+            pass
+    else:
+        print("No class Foo!")
+        class Bar:
+            pass
+
+    x = Foo()
+    print("Class Foo, defined in an executed branch of 'if' exists.")
+
+    try:
+        y = Bar()
+    except UnboundLocalError:
+        print("Class Bar, defined in a dead branch of 'if', does not exist.")
+    else:
+        print("Should not happen!")
