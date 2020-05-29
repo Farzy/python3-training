@@ -708,3 +708,17 @@ def classes():
         print("Class Bar, defined in a dead branch of 'if', does not exist.")
     else:
         print("Should not happen!")
+
+    class ExecutableStatement:
+        def __init__(self):
+            print("Class ExecutableStatement instanciated!")
+            print("namespace content in __init__:", dir())
+
+        print("Class ExecutableStatement declared! __init__ declared!")
+        print("namespace content in ExecutableStatement:", dir())
+        es_a = 1
+        print("'es_a' declared in class!")
+        print("namespace content in ExecutableStatement:", dir())
+
+    es = ExecutableStatement()
+    print("namespace content after instantiating 'es':", dir())
