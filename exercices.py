@@ -761,3 +761,57 @@ def classes():
     y = Complex(3.0, -4.5)
     print("Complex y =", y)
     print("dir(y) = ", dir(y))
+
+    class Dog:
+        """A class with class variables and instance variables"""
+
+        kind = 'canine'
+
+        def __init__(self, name):
+            self.name = name
+
+    d = Dog('Fido')
+    e = Dog('Buddy')
+    print("Dog d = ", d)
+    print("Dog e = ", e)
+    print("d.kind = ", d.kind)
+    print("e.kind = ", e.kind)
+    print("d.name = ", d.name)
+    print("e.name = ", e.name)
+
+    del d, e, Dog
+
+    class Dog:
+        """A bad use of class variable"""
+
+        tricks = []
+
+        def __init__(self, name):
+            self.name = name
+
+        def add_trick(self, trick):
+            self.tricks.append(trick)
+
+    d = Dog('Fido')
+    e = Dog('Buddy')
+    d.add_trick('roll over')
+    e.add_trick('play dead')
+    print("Bad Dog: d.tricks = ", d.tricks)
+    del d, e, Dog
+
+    class Dog:
+        """A good use of class variable"""
+
+        def __init__(self, name):
+            self.tricks = []
+            self.name = name
+
+        def add_trick(self, trick):
+            self.tricks.append(trick)
+
+    d = Dog('Fido')
+    e = Dog('Buddy')
+    d.add_trick('roll over')
+    e.add_trick('play dead')
+    print("Good Dog: d.tricks = ", d.tricks)
+    print("Good Dog: e.tricks = ", e.tricks)
