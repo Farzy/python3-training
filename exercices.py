@@ -722,3 +722,42 @@ def classes():
 
     es = ExecutableStatement()
     print("namespace content after instantiating 'es':", dir())
+
+    class MyClass:
+        """A simple example class"""
+        i = 12345
+
+        def __init__(self):
+            self.data = []
+
+        def f(self):
+            return "hello world"
+
+    x = MyClass()
+    print("MyClass x =", x)
+    print("dir(x) = ", dir(x))
+    print("MyClass.__doc__ =", MyClass.__doc__)
+    print("MyClass.i =", MyClass.i)
+    print("MyClass.f =", MyClass.f)
+    print("x.i =", x.i)
+    print("x.f =", x.f)
+    print("x.f() =", x.f())
+
+    print("Add an attribute 'counter' to instance object x.")
+    x.counter = 1
+    assert hasattr(x, "counter") == True
+    while x.counter < 10:
+        x.counter = x.counter * 2
+    print("x.counter =", x.counter)
+    del x.counter
+    assert hasattr(x, "counter") == False
+
+    class Complex:
+        """A class with initialisation parameters"""
+        def __init__(self, realpart, imagpart):
+            self.r = realpart
+            self.i = imagpart
+
+    y = Complex(3.0, -4.5)
+    print("Complex y =", y)
+    print("dir(y) = ", dir(y))
