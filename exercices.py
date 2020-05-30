@@ -815,3 +815,67 @@ def classes():
     e.add_trick('play dead')
     print("Good Dog: d.tricks = ", d.tricks)
     print("Good Dog: e.tricks = ", e.tricks)
+
+    # Function defined outside the class
+    def f1(self, x, y):
+        return min(x, x+y)
+
+    class C:
+        f = f1
+
+        def g(self):
+            return 'hello world'
+
+        h = g
+
+    # Methods can call other methods
+    class Bag:
+        def __init__(self):
+            self.data = []
+
+        def add(self, x):
+            self.data.append(x)
+
+        def addtwice(self, x):
+            self.add(x)
+            self.add(x)
+
+    # Inheritance
+    class BaseClass:
+        def f(self):
+            print("This is method 'f' in BaseClass, object =", self)
+
+        def call_b(self):
+            print("This method, declared in BaseClass, calls a method that is overloaded in DerivedClass")
+            self.b()
+
+        def b(self):
+            raise Exception("Should not happen")
+
+    class DerivedClass(BaseClass):
+        def f(self):
+            print("This is method 'f' in DerivedClass, object =", self)
+            print("  Now calling 'f' from parent class…")
+            BaseClass.f(self)
+
+        def b(self):
+            print("This is method 'b' in DerivedClass")
+
+    x = BaseClass()
+    x.f()
+    y = DerivedClass()
+    y.f()
+    y.call_b()
+    try:
+        x.call_b()
+    except Exception:
+        pass
+
+    assert isinstance(x, BaseClass)
+    assert not isinstance(x, DerivedClass)
+    assert isinstance(y, BaseClass)
+    assert isinstance(y, DerivedClass)
+
+    assert issubclass(DerivedClass, BaseClass)
+    assert not issubclass(BaseClass, DerivedClass)
+    assert issubclass(BaseClass, object)
