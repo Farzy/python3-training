@@ -1041,3 +1041,12 @@ def stdlib_tour():
     birthday = date(1970, 4, 3)
     age = now - birthday
     print(f"I am {age} days old.")
+
+    import zlib
+
+    s = b'witch which has which witches wrist watch'
+    print(f"Len of {s} is {len(s)}")
+    t = zlib.compress(s)
+    print(f"Len of compressed string {t} is {len(t)}")
+    assert s == zlib.decompress(t)
+    print("CRC32: ", zlib.crc32(s))
