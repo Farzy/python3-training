@@ -1130,6 +1130,15 @@ def stdlib_tour2():
     print("Main program waited until background was done.")
 
 
+    import logging
+
+    logging.debug("Debugging information")
+    logging.info("Informational message")
+    logging.warning("Warning: config file %s not found", 'server.conf')
+    logging.error("Error occured")
+    logging.critical("Critical error -- shutting down")
+
+
 #########################################################################################
 # This section must be executed by calling exercises.py directly from the command line
 #########################################################################################
