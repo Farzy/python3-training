@@ -1057,12 +1057,64 @@ def stdlib_tour():
     t2 = Timer('a,b = b,a', 'a=1; b=2').timeit()
     print(f"Timing comparison of classic swap ({t1}) vs tuple swap ({t2}")
 
+def stdlib_tour2():
+    """Second tour of the Standard Library"""
+
+    import reprlib
+    s = set('supercalifragilisticexpialidocious')
+    print("Repr of a long Set:", s)
+    print("Customized repr of a long Set:", reprlib.repr(s))
+    print(stdlib_tour)
+    print(reprlib.repr(stdlib_tour))
+
+    import pprint
+
+    t = [[[['black', 'cyan'], 'white', ['green', 'red']], [['magenta', 'yellow'], 'blue']]]
+    print("t=", t)
+    print("Now pretty printing t on 30 columns:")
+    pprint.pprint(t, width=30)
+    print("repr(t) =", reprlib.repr(t))
+
+    import textwrap
+    doc = """The wrap() method is just like fill() except that it returns
+    a list of strings instead of one big string with newlines to separate
+    the wrapped lines."""
+    print("Long text: ", doc)
+    print("Textwrapped on 40 columns:")
+    print(textwrap.fill(doc, width=40))
+    print(textwrap.wrap(doc, width=40))
+
+    import struct
+
+    with open('myfile.zip', 'rb') as f:
+        data = f.read()
+
+    start = 0
+    for i in range(3):                      # Show the first 3 file headers
+        start += 14
+        fields = struct.unpack('<IIIHH', data[start:start+16])
+        crc32, comp_size, uncomp_size, filesizename, extra_size = fields
+
+        start += 16
+        filename = data[start:start+filesizename]
+        start += filesizename
+        extra = data[start:start+extra_size]
+        print(f"Zip file #{i+1}: filename {filename}, "
+              f"crc32: {hex(crc32)}, compressed size: {comp_size}, "
+              f"uncompressed size: {uncomp_size}")
+
+        start += extra_size + comp_size     # Skip to the next header
+
+
+#########################################################################################
+# This section must be executed by calling exercises.py directly from the command line
+#########################################################################################
 
 # Quality control
-def average(values):
+def _average(values):
     """Computes the arithmetic mean of a list of numbers.
 
-    >>> print(average([20, 30, 70]))
+    >>> print(_average([20, 30, 70]))
     40.0
     """
     return sum(values) / len(values)
@@ -1076,20 +1128,20 @@ class TestStatisticalFunctions(unittest.TestCase):
     """My first unit test"""
 
     def test_average(self):
-        self.assertEqual(average([20, 30, 70]), 40.0)
-        self.assertEqual(round(average([1, 5, 7]), 1), 4.3)
+        self.assertEqual(_average([20, 30, 70]), 40.0)
+        self.assertEqual(round(_average([1, 5, 7]), 1), 4.3)
         with self.assertRaises(ZeroDivisionError):
-            average([])
+            _average([])
         with self.assertRaises(TypeError):
             # noinspection PyArgumentList
-            average(20, 30, 70)
+            _average(20, 30, 70)
 
 
 if __name__ == "__main__":
     import doctest
 
     print("Testing documentation code of average()")
-    print("Doc: ", average.__doc__)
+    print("Doc: ", _average.__doc__)
     doctest.testmod()
 
     print("Testing now with unit test…")
