@@ -1158,6 +1158,36 @@ def stdlib_tour2():
     except KeyError as e:
         print("Weak ref deleted:", e)
 
+    from array import array
+
+    a = array('H', [4000, 10, 700, 22222])
+    print("sum(array) =", sum(a))
+    print("a[1:3] =", a[1:3])
+
+    from _collections import deque
+
+    d = deque(["task1", "task2", "task3"])
+    d.append("task4")
+    print("deque: Handling", d.popleft())
+
+    import bisect
+
+    scores = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]
+    print("scores before bisect insort =", scores)
+    bisect.insort(scores, (300, 'ruby'))
+    print("scores after bisect insort =", scores)
+
+    from heapq import heapify, heappop, heappush
+
+    data = [1, 3, 5, 6, 9, 2, 4, 6, 8, 0]
+    print("data before heapify =", data)
+    heapify(data)                               # rearrange the list into heap order
+    print("data after heapify =", data)
+    heappush(data, -5)                          # add a new entry
+    print("data after heappush -5 =", data)
+    print("Pop three smallest entries:")
+    print([heappop(data) for i in range(3)])    # fetch the three smallest entries
+
 
 #########################################################################################
 # This section must be executed by calling exercises.py directly from the command line
