@@ -50,7 +50,7 @@ def main():
     """
 
     parser = argparse.ArgumentParser(prog="python3-training",
-                                     description="My Python 3 traning sessions")
+                                     description="My Python 3 training sessions")
     parser.add_argument('module', nargs='?', default=None,
                         help='Execute only one module by name')
     parser.add_argument('-l', '--list', action='store_true',

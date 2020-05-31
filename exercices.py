@@ -82,7 +82,7 @@ def strings():
 
 
 def lists():
-    """Traning on lists
+    """Training on lists
 
     Reference: https://docs.python.org/3/tutorial/introduction.html#lists
     """
@@ -186,7 +186,7 @@ def control_structures():
     def test_cache(a, _cache=[]):
         """Simulate a very basic (and WRONG) memoizing function"""
         if len(_cache) == 0:
-            # Do lenghty calculation
+            # Do lengthy calculation
             print("In test_cache, doing calculation…")
             sleep(1)
             _cache.append(42 + a)
@@ -475,7 +475,7 @@ def data_structures():
     a = {x for x in 'abracadabra' if x not in 'abc'}
     print("Set comprehension result:", a)
 
-    # Dictionnary
+    # Dictionary
     tel = {'jack': 4098, 'sape': 4139}
     print("dict:", tel)
     tel['guido'] = 4127
@@ -552,6 +552,7 @@ def exceptions():
             print("Caught exception D.")
 
     print("\nRaise first exception:")
+    # noinspection PyBroadException
     try:
         f = open('myfile.txt')
         s = f.readline()
@@ -565,10 +566,11 @@ def exceptions():
         raise
 
     print("\nRaise second exception:")
+    # noinspection PyBroadException
     try:
         f = open('fibo.py')
         s = f.readline()
-        i = int(s.strip())
+        _i = int(s.strip())
     except OSError as err:
         print(f"OS error: {err}")
     except ValueError:
@@ -578,10 +580,11 @@ def exceptions():
         raise
 
     print("\nRaise third exception:")
+    # noinspection PyBroadException
     try:
         f = open('fibo.py')
-        s = f.readline()
-        i = 1 / 0
+        _s = f.readline()
+        _i = 1 / 0
     except OSError as err:
         print(f"OS error: {err}")
     except ValueError:
@@ -605,6 +608,7 @@ def exceptions():
         """Base class for exceptions in this module"""
         pass
 
+    # noinspection PyUnusedLocal
     class InputError(Error):
         """Exception raised for errors in input
 
@@ -617,8 +621,9 @@ def exceptions():
             self.expression = expression
             self.message = message
 
+    # noinspection PyUnusedLocal
     class TransitionError(Error):
-        """Raised when an operation attemps a state transition that's not
+        """Raised when an operation attempts a state transition that's not
         allowed.
 
         Attributes:
@@ -627,12 +632,14 @@ def exceptions():
             message -- explanation of why the specific transition is not allowed
         """
 
+        # noinspection PyShadowingBuiltins
         def __init__(self, previous, next, message):
             self.previous = previous
             self.next = next
             self.message = message
 
     print("\nFinally:")
+    # noinspection PyBroadException
     try:
         try:
             raise KeyboardInterrupt
@@ -647,9 +654,11 @@ def exceptions():
             return True
         finally:
             return False
-    assert bool_return() == False
+    assert not bool_return()
 
+    # noinspection PyShadowingNames
     def divide(x, y):
+        """Test all try syntaxes"""
         try:
             result = x / y
         except ZeroDivisionError:
@@ -666,17 +675,25 @@ def exceptions():
     except TypeError as e:
         print("Caught exception:", e)
 
+
 def scopes():
     """Experiment with scopes"""
     def scope_test():
+        """Test and compare scopes"""
+        # noinspection PyShadowingNames
         def do_local():
+            """Create a variable in the local scope"""
+            # noinspection PyUnusedLocal
             spam = "local spam"
 
         def do_nonlocal():
+            """Create a variable in the non-local scope"""
             nonlocal spam
             spam = "nonlocal spam"
 
         def do_global():
+            """Create a global variable"""
+            # noinspection PyGlobalUndefined
             global spam
             spam = "global spam"
 
@@ -692,6 +709,7 @@ def scopes():
     # noinspection PyUnboundLocalVariable
     print("In global scope:", spam)
 
+
 def classes():
     """Class manipulation"""
 
@@ -699,18 +717,21 @@ def classes():
     a = 1
     if a == 1:
         class Foo:
+            """Class create in an if branch"""
             pass
     else:
         print("No class Foo!")
+
         class Bar:
+            """Class never created"""
             pass
 
     # noinspection PyUnboundLocalVariable
-    x = Foo()
+    _x = Foo()
     print("Class Foo, defined in an executed branch of 'if' exists.")
 
     try:
-        # noinspection PyUnboundLocalVariable
+        # noinspection PyUnboundLocalVariable,PyUnusedLocal
         y = Bar()
     except UnboundLocalError:
         print("Class Bar, defined in a dead branch of 'if', does not exist.")
@@ -718,8 +739,9 @@ def classes():
         print("Should not happen!")
 
     class ExecutableStatement:
+        """Execute statements during class creation"""
         def __init__(self):
-            print("Class ExecutableStatement instanciated!")
+            print("Class ExecutableStatement instantiated!")
             print("namespace content in __init__:", dir())
 
         print("Class ExecutableStatement declared! __init__ declared!")
@@ -728,6 +750,7 @@ def classes():
         print("'es_a' declared in class!")
         print("namespace content in ExecutableStatement:", dir())
 
+    # noinspection PyUnusedLocal
     es = ExecutableStatement()
     print("namespace content after instantiating 'es':", dir())
 
@@ -738,7 +761,9 @@ def classes():
         def __init__(self):
             self.data = []
 
+        # noinspection PyMethodMayBeStatic
         def f(self):
+            """Simple method"""
             return "hello world"
 
     x = MyClass()
@@ -753,12 +778,12 @@ def classes():
 
     print("Add an attribute 'counter' to instance object x.")
     x.counter = 1
-    assert hasattr(x, "counter") == True
+    assert hasattr(x, "counter") is True
     while x.counter < 10:
         x.counter = x.counter * 2
     print("x.counter =", x.counter)
     del x.counter
-    assert hasattr(x, "counter") == False
+    assert hasattr(x, "counter") is False
 
     class Complex:
         """A class with initialisation parameters"""
@@ -798,6 +823,7 @@ def classes():
             self.name = name
 
         def add_trick(self, trick):
+            """Add trick to dog… or to class Dog"""
             self.tricks.append(trick)
 
     d = Dog('Fido')
@@ -815,6 +841,7 @@ def classes():
             self.name = name
 
         def add_trick(self, trick):
+            """Add trick to dog"""
             self.tricks.append(trick)
 
     d = Dog('Fido')
@@ -825,48 +852,67 @@ def classes():
     print("Good Dog: e.tricks = ", e.tricks)
 
     # Function defined outside the class
+    # noinspection PyShadowingNames,PyUnusedLocal
     def f1(self, x, y):
+        """This function will be used as a method"""
         return min(x, x+y)
 
+    # noinspection PyMethodMayBeStatic,PyUnusedLocal
     class C:
+        """Demonstrate that a method body can be outside of class"""
         f = f1
 
         def g(self):
+            """Sample method"""
             return 'hello world'
 
         h = g
 
-    # Methods can call other methods
+    # noinspection PyUnusedLocal
     class Bag:
+        """Methods can call other methods"""
         def __init__(self):
             self.data = []
 
+        # noinspection PyShadowingNames
         def add(self, x):
+            """Add data once"""
             self.data.append(x)
 
+        # noinspection PyShadowingNames
         def addtwice(self, x):
+            """Add data twice"""
             self.add(x)
             self.add(x)
 
     # Inheritance
     class BaseClass:
+        """Base class for inheritance"""
+
         def f(self):
+            """Method in base class, can be overloaded"""
             print("This is method 'f' in BaseClass, object =", self)
 
         def call_b(self):
+            """This method from base class can call method from derived class"""
             print("This method, declared in BaseClass, calls a method that is overloaded in DerivedClass")
             self.b()
 
         def b(self):
+            """Placeholder in base class"""
             raise Exception("Should not happen")
 
     class DerivedClass(BaseClass):
+        """Derived class to demonstrate virtual methods"""
+
         def f(self):
+            """This method overrides the one from base class"""
             print("This is method 'f' in DerivedClass, object =", self)
             print("  Now calling 'f' from parent class…")
             BaseClass.f(self)
 
         def b(self):
+            """This method is called by a base class method"""
             print("This is method 'b' in DerivedClass")
 
     x = BaseClass()
@@ -874,6 +920,7 @@ def classes():
     y = DerivedClass()
     y.f()
     y.call_b()
+    # noinspection PyBroadException
     try:
         x.call_b()
     except Exception:
@@ -915,6 +962,7 @@ def classes():
 
     for char in reverse('golf'):
         print(char)
+
 
 def stdlib_tour():
     """A brief tour of the Standard Library"""
