@@ -997,3 +997,20 @@ def stdlib_tour():
     s2 = 'cat in the the hat'
     s2_fixed = re.sub(r'(\b[a-z]+) \1', r'\1', s2)
     print(f"Remove redundant words in '{s2}': {s2_fixed}")
+
+    import random
+
+    choice = random.choice(['apple', 'pear', 'banana'])
+    print("Random fruit from a choice:", choice)
+    sample = random.sample(range(100), 10)  # Sampling without replacement
+    print("Sampling without replacement:", sample)
+    print("Random float:", random.random())
+    print("Random integer from a range of 6:", random.randrange(6))
+
+    import statistics
+
+    data = [2.75, 1.75, 1.25, 0.25, 0.5, 1.25, 3.5]
+    print("Data:", data)
+    print("Mean:", statistics.mean(data))
+    print("Median:", statistics.median(data))
+    print("Variance:", statistics.variance(data))
