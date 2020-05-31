@@ -400,10 +400,11 @@ def data_structures():
         squares.append(x ** 2)
     print("Unnecessary variable 'x' remains and erased previous value: ", x)
     print("squares:", squares)
-    squares = list(map(lambda x: x ** 2, range(10)))
+    squares = list(map(lambda xx: xx ** 2, range(10)))  # If x was used here, it would shadow the main x
     print("squares:", squares)
-    squares = [x ** 2 for x in range(10)]
+    squares = [yy ** 2 for yy in range(10)]  # If x was used here, it would shadow the main x
     print("squares:", squares)
+    assert x == 9
 
     # The loop are embedded in the order they are written.
     # Here the "y" loops continuously between each "x" loop.
@@ -517,12 +518,15 @@ def exceptions():
     """Experiment with exceptions"""
 
     class B(Exception):
+        """B derives from Exception"""
         pass
 
     class C(B):
+        """C derives from C"""
         pass
 
     class D(C):
+        """D derives from C"""
         pass
 
     print("Catch exception in the correct order:")
@@ -551,7 +555,7 @@ def exceptions():
     try:
         f = open('myfile.txt')
         s = f.readline()
-        i = int(s.strip())
+        _i = int(s.strip())
     except OSError as err:
         print(f"OS error: {err}")
     except ValueError:
@@ -657,6 +661,7 @@ def exceptions():
     divide(2, 1)
     divide(2, 0)
     try:
+        # noinspection PyTypeChecker
         divide("2", "1")
     except TypeError as e:
         print("Caught exception:", e)
@@ -684,6 +689,7 @@ def scopes():
         print("After global assignment:", spam)
 
     scope_test()
+    # noinspection PyUnboundLocalVariable
     print("In global scope:", spam)
 
 def classes():
@@ -699,10 +705,12 @@ def classes():
         class Bar:
             pass
 
+    # noinspection PyUnboundLocalVariable
     x = Foo()
     print("Class Foo, defined in an executed branch of 'if' exists.")
 
     try:
+        # noinspection PyUnboundLocalVariable
         y = Bar()
     except UnboundLocalError:
         print("Class Bar, defined in a dead branch of 'if', does not exist.")
