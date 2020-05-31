@@ -1057,6 +1057,7 @@ def stdlib_tour():
     t2 = Timer('a,b = b,a', 'a=1; b=2').timeit()
     print(f"Timing comparison of classic swap ({t1}) vs tuple swap ({t2}")
 
+
 def stdlib_tour2():
     """Second tour of the Standard Library"""
 
@@ -1098,13 +1099,12 @@ def stdlib_tour2():
         start += 16
         filename = data[start:start+filesizename]
         start += filesizename
-        extra = data[start:start+extra_size]
+        _extra = data[start:start+extra_size]
         print(f"Zip file #{i+1}: filename {filename}, "
               f"crc32: {hex(crc32)}, compressed size: {comp_size}, "
               f"uncompressed size: {uncomp_size}")
 
         start += extra_size + comp_size     # Skip to the next header
-
 
     import threading, zipfile
 
@@ -1137,6 +1137,26 @@ def stdlib_tour2():
     logging.warning("Warning: config file %s not found", 'server.conf')
     logging.error("Error occured")
     logging.critical("Critical error -- shutting down")
+
+    import weakref, gc
+
+    class A:
+        def __init__(self, value):
+            self.value = value
+
+        def __repr__(self):
+            return str(self.value)
+
+    a = A(10)                           # Create a reference
+    d = weakref.WeakValueDictionary()
+    d['primary'] = a                    # does not create a reference
+    print("Wear ref:", d['primary'])   # fetch the object if it is still alive
+    del a                               # remove the one reference
+    gc.collect()                        # run garbage collection right away
+    try:
+        d['primary']
+    except KeyError as e:
+        print("Weak ref deleted:", e)
 
 
 #########################################################################################
