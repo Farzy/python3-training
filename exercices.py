@@ -931,3 +931,13 @@ def stdlib_tour():
     print("Same list with glob():", glob.glob(f"*{pid}"))
 
     os.chdir(curdir)
+
+    # Regex
+    import re
+
+    s = 'which foot or hand fell fastest'
+    fwords = re.findall(r'\bf[a-z]*', s)
+    print(f"f-words in '{s}: {fwords}")
+    s2 = 'cat in the the hat'
+    s2_fixed = re.sub(r'(\b[a-z]+) \1', r'\1', s2)
+    print(f"Remove redundant words in '{s2}': {s2_fixed}")
