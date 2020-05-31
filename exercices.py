@@ -1188,6 +1188,19 @@ def stdlib_tour2():
     print("Pop three smallest entries:")
     print([heappop(data) for i in range(3)])    # fetch the three smallest entries
 
+    from decimal import Decimal, getcontext
+
+    print("Calculating a 5% tax on a 70 cent charge:")
+    print("Decimal rounding:", round(Decimal('0.70') * Decimal('1.05'), 2))
+    print("Float rounding:", round(0.70 * 1.05, 2))
+    assert (Decimal('1.00') % Decimal('0.10')) == Decimal('0.00')
+    assert 1.00 % 0.10 != 0.0
+    assert sum([Decimal('0.1')] * 10) == Decimal('1.0')
+    assert sum([0.1] * 10) != 1.0
+
+    getcontext().prec = 36
+    print(f"1/7 (precision {getcontext().prec}) = {Decimal(1) / Decimal(7)}")
+
 
 #########################################################################################
 # This section must be executed by calling exercises.py directly from the command line
