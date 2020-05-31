@@ -86,10 +86,7 @@ def main():
         print("+" + "-" * (title_length + 4) + "+")
         print()
 
-        try:
-            f()
-        except TypeError:
-            print("Ignoring error for this function. It should not be called directly.")
+        f()  # Let exceptions happen
 
 
 if __name__ == '__main__':

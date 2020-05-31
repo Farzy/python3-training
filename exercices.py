@@ -325,14 +325,14 @@ def control_structures():
     print("Pairs after sorting with lambda", pairs)
 
     # Call annotated function
-    func_annotations('spam')
+    _func_annotations('spam')
     # These would hint warnings in IntelliJ
     # func_annotations(42)
     # x = func_annotations('bacon') + 4
 
 
 # Function Annotations
-def func_annotations(ham: str, eggs: str = 'eggs') -> str:
+def _func_annotations(ham: str, eggs: str = 'eggs') -> str:
     """
     Test Function Annotations
 
@@ -340,7 +340,7 @@ def func_annotations(ham: str, eggs: str = 'eggs') -> str:
     :param eggs: Some eggs
     :return: Delicious breakfast
     """
-    print("Annotations: ", func_annotations.__annotations__)
+    print("Annotations: ", _func_annotations.__annotations__)
     print("Arguments:", ham, eggs)
     return ham + ' and ' + eggs
 
