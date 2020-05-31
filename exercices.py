@@ -1014,3 +1014,30 @@ def stdlib_tour():
     print("Mean:", statistics.mean(data))
     print("Median:", statistics.median(data))
     print("Variance:", statistics.variance(data))
+
+    from urllib.request import urlopen
+
+    with urlopen('https://farzy.org/fr/') as response:
+        for line in response:
+            line = line.decode('utf-8')
+            print(line)
+
+    # import smtplib
+    # server = smtplib.SMTP('in1-smtp.messagingengine.com.')
+    # server.sendmail('farzad.farid@gmail.com', 'farzy@farzy.org',
+    #                 'To: farzy@farzy.org\n' \
+    #                 'From: farzad.farid@gmail.com\n' \
+    #                 'Subject: Test email\n' \
+    #                 '\n' \
+    #                 'Beware the Ides of March.')
+    # server.quit()
+
+    from datetime import date
+
+    now = date.today()
+    print("Now: ", now)
+    now_str = now.strftime("%m-%d-%y. %d %b %Y is a %A on the %d day of %B.")
+    print("Now: ", now_str)
+    birthday = date(1970, 4, 3)
+    age = now - birthday
+    print(f"I am {age} days old.")
