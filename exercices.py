@@ -907,3 +907,27 @@ def classes():
 
     for char in reverse('golf'):
         print(char)
+
+def stdlib_tour():
+    """A brief tour of the Standard Library"""
+
+    import os
+
+    curdir = os.getcwd()
+    pid = str(os.getpid())
+    print("Current dir:", curdir)
+    os.chdir('/tmp')
+    print("New current dir:", os.getcwd())
+    os.system('touch python3-tutorial-' + pid)
+    print("Our files in /tmp:", [file for file in os.listdir('/tmp') if 'python3' in file])
+
+    import shutil
+    shutil.copyfile('python3-tutorial-' + pid, 'copy-python3-tut-' + pid)
+    print("Our files with current pid in /tmp:", [file for file in os.listdir('/tmp') if pid in file])
+    print("Rename a file")
+    shutil.move('python3-tutorial-' + pid, 'old-python3-tutorial-' + pid)
+
+    import glob
+    print("Same list with glob():", glob.glob(f"*{pid}"))
+
+    os.chdir(curdir)
