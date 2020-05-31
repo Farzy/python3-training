@@ -1050,3 +1050,47 @@ def stdlib_tour():
     print(f"Len of compressed string {t} is {len(t)}")
     assert s == zlib.decompress(t)
     print("CRC32: ", zlib.crc32(s))
+
+    from timeit import Timer
+
+    t1 = Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
+    t2 = Timer('a,b = b,a', 'a=1; b=2').timeit()
+    print(f"Timing comparison of classic swap ({t1}) vs tuple swap ({t2}")
+
+
+# Quality control
+def average(values):
+    """Computes the arithmetic mean of a list of numbers.
+
+    >>> print(average([20, 30, 70]))
+    40.0
+    """
+    return sum(values) / len(values)
+
+
+# Run 'python3 exercices.py' to run doc test and unit test
+import unittest
+
+
+class TestStatisticalFunctions(unittest.TestCase):
+    """My first unit test"""
+
+    def test_average(self):
+        self.assertEqual(average([20, 30, 70]), 40.0)
+        self.assertEqual(round(average([1, 5, 7]), 1), 4.3)
+        with self.assertRaises(ZeroDivisionError):
+            average([])
+        with self.assertRaises(TypeError):
+            # noinspection PyArgumentList
+            average(20, 30, 70)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    print("Testing documentation code of average()")
+    print("Doc: ", average.__doc__)
+    doctest.testmod()
+
+    print("Testing now with unit test…")
+    unittest.main()
