@@ -31,7 +31,7 @@ python3 exercices.py [-v]
 the benchmarks with:
 
 ```bash
-python3 cw-duplicate-encoder.py
+python3 codewars/duplicate_encoder.py
 ```
 
 ## Authors

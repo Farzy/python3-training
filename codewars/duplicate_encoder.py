@@ -8,7 +8,7 @@ With a large word (10.000 characters) my code is 2OO to 300 times
 faster than the best voted solution I found because there is no
 exponential complexity in it.
 
->>> python3 cw-duplicate-encoder.py                                                                                                                                                               ─╯
+>>> python3 codewars/duplicate_encoder.py                                                                                                                                                               ─╯
 Benchmark 'duplicate_encode_liked', word size = 50000, rounds = 100
 274.265376327
 Benchmark 'duplicate_encode_mine', word size = 50000, rounds = 100
