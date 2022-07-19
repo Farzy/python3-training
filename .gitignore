@@ -264,3 +264,4 @@ cython_debug/
 
 myarchive.zip
 /brilliant/output*.png
+/brilliant/test.py
