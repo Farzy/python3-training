@@ -1,18 +1,20 @@
-[tool.poetry]
+[project]
 name = "python3-training"
 version = "0.1.0"
 description = "Python 3 training ground"
-authors = ["Farzad FARID <farzy@farzy.org>"]
-license = "Apache License 2.0"
+authors = [
+    {name = "Farzad FARID", email = "farzy@farzy.org"},
+]
+license = {text = "Apache License 2.0"}
+requires-python = "<4.0,>=3.10"
+dependencies = [
+    "bs4",
+    "requests",
+    "matplotlib<4.0.0,>=3.5.2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-bs4 = "*"
-requests = "*"
-matplotlib = "^3.5.2"
+[tool.uv]
+default-groups = []
 
-[tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = []
