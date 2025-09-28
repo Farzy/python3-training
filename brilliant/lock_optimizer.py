@@ -3,24 +3,24 @@ import collections
 
 def solve_lock(start_code, target_code):
     """
-    Calculates the minimum number of manipulations to get from a start code to a target code on a 4-digit lock.
+    Calculates the minimum number of manipulations to get from a start code to a target code on an N-digit lock.
 
     This function models the problem as a shortest path search on a graph where each node is a
     combination and each edge is a single manipulation. It uses a Breadth-First Search (BFS)
     algorithm to find the shortest sequence of manipulations.
 
-    The state is represented by the "difference" tuple `(d1, d2, d3, d4)`, where each `di` is
+    The state is represented by the "difference" tuple `(d1, ..., dN)`, where each `di` is
     the number of upward steps needed for the i-th wheel to match the target. The goal is to
-    reach the state (0, 0, 0, 0).
+    reach the state (0, ..., 0).
 
-    A "manipulation" is defined as turning a consecutive block of 1, 2, 3, or 4 wheels,
-    starting from either the far-left or far-right. The key insight is that the optimal
-    amount to turn a block of wheels is always the amount that makes one of the wheels in
-    that block match its target value (i.e., makes its difference become 0).
+    A "manipulation" is defined as turning a consecutive block of wheels, starting from
+    either the far-left or far-right. The key insight is that the optimal amount to turn a
+    block of wheels is always the amount that makes one of the wheels in that block match
+    its target value (i.e., makes its difference become 0).
 
     Args:
-        start_code (str): The 4-digit starting combination (e.g., "1234").
-        target_code (str): The 4-digit target combination (e.g., "2468").
+        start_code (str): The N-digit starting combination (e.g., "1234").
+        target_code (str): The N-digit target combination (e.g., "2468").
 
     Returns:
         list[str]: A list of strings, where each string describes a manipulation.
@@ -30,11 +30,15 @@ def solve_lock(start_code, target_code):
     if start_code == target_code:
         return []
 
+    if len(start_code) != len(target_code):
+        raise ValueError("Start and target codes must have the same number of digits.")
+
+    n_digits = len(start_code)
     start_ints = [int(c) for c in start_code]
     target_ints = [int(c) for c in target_code]
 
-    # The state is the tuple of differences for each wheel. Goal is (0, 0, 0, 0).
-    initial_diff = tuple((target_ints[i] - start_ints[i]) % 10 for i in range(4))
+    # The state is the tuple of differences for each wheel. Goal is a tuple of all zeros.
+    initial_diff = tuple((target_ints[i] - start_ints[i]) % 10 for i in range(n_digits))
 
     # Queue for BFS: stores (difference_tuple, path_of_moves)
     queue = collections.deque([(initial_diff, [])])
@@ -50,7 +54,7 @@ def solve_lock(start_code, target_code):
         # --- Generate all possible next states (neighbors) ---
         
         # Moves starting from the LEFT
-        for num_wheels in range(1, 5):  # 1, 2, 3, or 4 wheels
+        for num_wheels in range(1, n_digits + 1):
             # The best amount to turn is one that zeros out one of the wheels in the block
             for wheel_to_zero in range(num_wheels):
                 turn_amount = current_diff[wheel_to_zero]
@@ -74,13 +78,13 @@ def solve_lock(start_code, target_code):
                     queue.append((new_diff, new_path))
 
         # Moves starting from the RIGHT
-        for num_wheels in range(1, 4):  # 1, 2, or 3 wheels (4 is covered by left)
-            for wheel_to_zero_idx in range(4 - num_wheels, 4):
+        for num_wheels in range(1, n_digits):  # N-digit move is covered by the left-side moves
+            for wheel_to_zero_idx in range(n_digits - num_wheels, n_digits):
                 turn_amount = current_diff[wheel_to_zero_idx]
                 if turn_amount == 0: continue
 
                 new_diff_list = list(current_diff)
-                for i in range(4 - num_wheels, 4):
+                for i in range(n_digits - num_wheels, n_digits):
                     new_diff_list[i] = (new_diff_list[i] - turn_amount) % 10
 
                 new_diff = tuple(new_diff_list)
@@ -98,28 +102,42 @@ def solve_lock(start_code, target_code):
     return None # Should not be reached
 
 if __name__ == "__main__":
-    # Example from the problem description
-    start = "4564"
-    target = "4586"
-    print(f"Solving for start: {start}, target: {target}")
-    solution = solve_lock(start, target)
-    if solution:
-        print(f"Found solution in {len(solution)} steps:")
-        for step in solution:
+    # Example 1 (N=4)
+    start_4 = "4564"
+    target_4 = "4586"
+    print(f"Solving for start: {start_4}, target: {target_4}")
+    solution_4 = solve_lock(start_4, target_4)
+    if solution_4:
+        print(f"Found solution in {len(solution_4)} steps:")
+        for step in solution_4:
             print(f"- {step}")
     else:
         print("No steps needed or no solution found.")
     
     print("-" * 20)
 
-    # A more complex example
-    start = "1234"
-    target = "5091"
-    print(f"Solving for start: {start}, target: {target}")
-    solution = solve_lock(start, target)
-    if solution:
-        print(f"Found solution in {len(solution)} steps:")
-        for step in solution:
+    # Example 2 (N=4, more complex)
+    start_4_complex = "1234"
+    target_4_complex = "5091"
+    print(f"Solving for start: {start_4_complex}, target: {target_4_complex}")
+    solution_4_complex = solve_lock(start_4_complex, target_4_complex)
+    if solution_4_complex:
+        print(f"Found solution in {len(solution_4_complex)} steps:")
+        for step in solution_4_complex:
+            print(f"- {step}")
+    else:
+        print("No steps needed or no solution found.")
+
+    print("-" * 20)
+
+    # Example 3 (N=5)
+    start_5 = "00000"
+    target_5 = "12321"
+    print(f"Solving for start: {start_5}, target: {target_5}")
+    solution_5 = solve_lock(start_5, target_5)
+    if solution_5:
+        print(f"Found solution in {len(solution_5)} steps:")
+        for step in solution_5:
             print(f"- {step}")
     else:
         print("No steps needed or no solution found.")
