@@ -42,6 +42,12 @@ the benchmarks with:
 python3 codewars/duplicate_encoder.py
 ```
 
+## Lock Optimizer Algorithm
+
+The implementation and a detailed explanation of the algorithm can be found in the `lock_optimizer` folder.
+
+*   [N-Digit Lock Rotation Algorithm](lock_optimizer/Lock_rotation_algorithm.md)
+
 ## Authors
 
 * Python book authors for the sample code
