@@ -64,13 +64,16 @@ def get_modules():
 
 
 @click.command(context_settings=dict(help_option_names=["-h", "--help"]))
-@click.argument("module", required=False)
+@click.argument("module", required=False, metavar="[MODULE]")
 @click.option(
     "--list", "-l", "list_modules", is_flag=True, help="Display list of modules"
 )
 @click.version_option(VERSION, "--version", prog_name="python3-training")
 def main(module, list_modules):
-    """The main program calls the training sessions
+    """The main program calls the training sessions.
+
+    [MODULE] is the name of the exercise to run (e.g., 'strings', 'lists').
+    If omitted, all exercises are run sequentially.
 
     This function uses Python's introspection in order to extract the list of
     functions from the "exercises" module.
