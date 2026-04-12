@@ -56,9 +56,16 @@ def solve_n_queens(n: int) -> Generator[list[int], None, None]:
 
 def render_board(solution: list[int]) -> str:
     """
-    Transforms a solution into an elegant Unicode representation.
+    Transforms a solution into an elegant Unicode representation using ANSI colors.
     """
     n = len(solution)
+
+    # ANSI Color Codes
+    bg_dark = "\033[40m"  # Black background
+    bg_light = "\033[47m"  # White background
+    fg_white = "\033[97m"  # Bright white text (for queen on dark square)
+    fg_black = "\033[30m"  # Black text (for queen on light square)
+    reset = "\033[0m"  # Reset to default terminal colors
 
     # Top border
     board_str = ["┌" + "───┬" * (n - 1) + "───┐"]
@@ -66,12 +73,16 @@ def render_board(solution: list[int]) -> str:
     for row in range(n):
         row_chars = []
         for col in range(n):
+            is_dark = (row + col) % 2 != 0
+
+            # Select background and foreground colors based on the square
+            bg_color = bg_dark if is_dark else bg_light
+            queen_color = fg_white if is_dark else fg_black
+
             if solution[row] == col:
-                row_chars.append(" ♛ ")
+                row_chars.append(f"{bg_color}{queen_color} ♛ {reset}")
             else:
-                # Create a checkerboard pattern (light and dark squares)
-                is_dark = (row + col) % 2 != 0
-                row_chars.append("░░░" if is_dark else "   ")
+                row_chars.append(f"{bg_color}   {reset}")
 
         board_str.append("│" + "│".join(row_chars) + "│")
 

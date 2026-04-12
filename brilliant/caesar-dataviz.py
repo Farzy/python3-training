@@ -43,8 +43,7 @@ ccdbodmrpkbkgki
 
 
 def dataviz(code, output):
-    # ruff: noqa: E741
-    letter_counts = [code.count(l) for l in alphabet]
+    letter_counts = [code.count(char) for char in alphabet]
     letter_colors = plt.cm.hsv([0.8 * i / max(letter_counts) for i in letter_counts])
 
     plt.cla()
