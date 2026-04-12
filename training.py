@@ -25,7 +25,8 @@ limitations under the License.
 """
 
 import sys
-import argparse
+import click
+import types
 import exercices
 
 VERSION = "1.0"
@@ -36,7 +37,7 @@ def get_modules():
 
     # Extract functions whose name does not start with '_' from module
     functions = filter(
-        lambda sym: isinstance(getattr(exercices, sym), type(main))
+        lambda sym: isinstance(getattr(exercices, sym), types.FunctionType)
         and not sym.startswith("_"),
         dir(exercices),
     )
@@ -45,7 +46,8 @@ def get_modules():
     functions2 = [
         sym
         for sym in dir(exercices)
-        if isinstance(getattr(exercices, sym), type(main)) and not sym.startswith("_")
+        if isinstance(getattr(exercices, sym), types.FunctionType)
+        and not sym.startswith("_")
     ]
     assert functions == functions2
 
@@ -61,41 +63,34 @@ def get_modules():
     return modules
 
 
-def main():
+@click.command(context_settings=dict(help_option_names=["-h", "--help"]))
+@click.argument("module", required=False)
+@click.option(
+    "--list", "-l", "list_modules", is_flag=True, help="Display list of modules"
+)
+@click.version_option(VERSION, "--version", prog_name="python3-training")
+def main(module, list_modules):
     """The main program calls the training sessions
 
     This function uses Python's introspection in order to extract the list of
     functions from the "exercises" module.
     """
 
-    parser = argparse.ArgumentParser(
-        prog="python3-training", description="My Python 3 training sessions"
-    )
-    parser.add_argument(
-        "module", nargs="?", default=None, help="Execute only one module by name"
-    )
-    parser.add_argument(
-        "-l", "--list", action="store_true", help="Display list of modules"
-    )
-    parser.add_argument(
-        "--version", action="version", version=f"{parser.prog} {VERSION}"
-    )
-    args = parser.parse_args()
-
     # Basic argument parsing
-    if args.list:
+    if list_modules:
         modules = get_modules()
         for name in modules:
             print(f"{name:<15} -- {modules[name]}")
         sys.exit(1)
 
     modules = get_modules()
-    if args.module:
+    if module:
         try:
-            modules = {args.module: modules[args.module]}  # Reduce dict to one element
+            modules = {module: modules[module]}  # Reduce dict to one element
         except KeyError:
-            sys.stderr.write(
-                f"Error: Unknown module {args.module}. Check module list with '{parser.prog} --list'.\n"
+            click.echo(
+                f"Error: Unknown module {module}. Check module list with 'python3-training --list'.",
+                err=True,
             )
             sys.exit(1)
 
