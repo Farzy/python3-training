@@ -1,26 +1,27 @@
 """Test Turtle from https://docs.python.org/fr/3/library/turtle.html"""
-from turtle import *
+
+import turtle
 
 DEBUG = False
 DIAMETER = 300
 
-speed(10)
-color('red', 'yellow')
+turtle.speed(10)
+turtle.color("red", "yellow")
 
-penup()
-back(DIAMETER / 2)
-pendown()
-initial_pos = pos()
+turtle.penup()
+turtle.back(DIAMETER / 2)
+turtle.pendown()
+initial_pos = turtle.pos()
 
-begin_fill()
+turtle.begin_fill()
 while True:
     if DEBUG:
-        print(f"{pos()}: {abs(pos())}")
-    forward(DIAMETER)
-    left(170)
-    if abs(initial_pos - pos()) < 1:
+        print(f"{turtle.pos()}: {abs(turtle.pos())}")
+    turtle.forward(DIAMETER)
+    turtle.left(170)
+    if abs(initial_pos - turtle.pos()) < 1:
         if DEBUG:
-            print(f"{pos()}: {abs(pos())}")
+            print(f"{turtle.pos()}: {abs(turtle.pos())}")
         break
-end_fill()
-done()
+turtle.end_fill()
+turtle.done()

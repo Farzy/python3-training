@@ -8,7 +8,7 @@ With a large word (10.000 characters) my code is 2OO to 300 times
 faster than the best voted solution I found because there is no
 exponential complexity in it.
 
->>> python3 codewars/duplicate_encoder.py                                                                                                                                                               ─╯
+>>> python codewars/duplicate_encoder.py                                                                                                                                                               ─╯
 Benchmark 'duplicate_encode_liked', word size = 50000, rounds = 100
 274.265376327
 Benchmark 'duplicate_encode_mine', word size = 50000, rounds = 100
@@ -74,7 +74,7 @@ def setup(size=1_000):
     # noinspection PyGlobalUndefined
     global long_word
 
-    chars = [chr(i) for i in range(ord(' '), 127)]
+    chars = [chr(i) for i in range(ord(" "), 127)]
     long_word = "".join(random.choices(chars, k=size))
 
 
@@ -83,19 +83,24 @@ def test(func):
     func(long_word)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import timeit
 
     word_size = 50_000
     rounds = 100
-    solutions = ['duplicate_encode_liked', 'duplicate_encode_mine',
-                 'duplicate_encode_mine2']
+    solutions = [
+        "duplicate_encode_liked",
+        "duplicate_encode_mine",
+        "duplicate_encode_mine2",
+    ]
 
     for solution in solutions:
         print(f"Benchmack '{solution}', word size = {word_size}, rounds = {rounds}")
-        print(timeit.timeit(
-            f"test({solution})",
-            setup=f"from __main__ import test, {solution}, setup;"
-                  f"setup({word_size})",
-            number=rounds
-        ))
+        print(
+            timeit.timeit(
+                f"test({solution})",
+                setup=f"from __main__ import test, {solution}, setup;"
+                f"setup({word_size})",
+                number=rounds,
+            )
+        )

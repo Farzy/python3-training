@@ -31,6 +31,6 @@ def avg_sticks(count: int) -> float:
     return lengths / count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     avg_longest_stick = avg_sticks(10_000)
     print(f"Average longest stick is {avg_longest_stick} long.")

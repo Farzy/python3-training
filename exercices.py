@@ -17,6 +17,7 @@ limitations under the License.
 
 import datetime
 import sys
+import unittest
 from time import sleep
 from collections import deque
 
@@ -27,18 +28,26 @@ def strings():
     Reference: https://docs.python.org/3/tutorial/introduction.html#strings
     """
 
-    print("{0}, {1}, {2}".format('a', 'b', 'c'))
-    print("{}, {}, {}".format('a', 'b', 'c'))
-    print("{1}, {0}, {2}".format('a', 'b', 'c'))
-    print("{2}, {1}, {0}".format(*'abc'))
-    print("{0}{1}{0}".format('abra', 'cad'))
+    print("{0}, {1}, {2}".format("a", "b", "c"))
+    print("{}, {}, {}".format("a", "b", "c"))
+    print("{1}, {0}, {2}".format("a", "b", "c"))
+    print("{2}, {1}, {0}".format(*"abc"))
+    print("{0}{1}{0}".format("abra", "cad"))
 
-    print("Coordinates: {latitude}, {longitude}".format(latitude='37.24N', longitude='-115.81W'))
-    coord = {'latitude': '37.24N', 'longitude': '-115.81W'}
+    print(
+        "Coordinates: {latitude}, {longitude}".format(
+            latitude="37.24N", longitude="-115.81W"
+        )
+    )
+    coord = {"latitude": "37.24N", "longitude": "-115.81W"}
     print("Coordinates: {latitude}, {longitude}".format(**coord))
 
     c = 3 - 5j
-    print("The complex number {0} if formed of the real part {0.real} and the imaginary part {0.imag}".format(c))
+    print(
+        "The complex number {0} if formed of the real part {0.real} and the imaginary part {0.imag}".format(
+            c
+        )
+    )
 
     class Point:
         """
@@ -55,43 +64,43 @@ def strings():
     print("Object {0!r} = {0}".format(p))
 
     coord = (3, 5)
-    print('X: {0[0]};  Y: {0[1]}'.format(coord))
+    print("X: {0[0]};  Y: {0[1]}".format(coord))
 
-    print("repr() shows quotes: {!r}; str() doesn't: {!s}".format('test1', 'test2'))
+    print("repr() shows quotes: {!r}; str() doesn't: {!s}".format("test1", "test2"))
 
-    print('{:<30}'.format('left aligned'))
-    print('{:>30}'.format('right aligned'))
-    print('{:^30}'.format('centered'))
-    print('{:*^30}'.format('centered'))  # use '*' as a fill char
+    print("{:<30}".format("left aligned"))
+    print("{:>30}".format("right aligned"))
+    print("{:^30}".format("centered"))
+    print("{:*^30}".format("centered"))  # use '*' as a fill char
 
-    print('{:+f}, {:+f}'.format(3.14, -3.14))
-    print('{: f}, {: f}'.format(3.14, -3.14))
-    print('{:-f}, {:-f}'.format(3.14, -3.14))
+    print("{:+f}, {:+f}".format(3.14, -3.14))
+    print("{: f}, {: f}".format(3.14, -3.14))
+    print("{:-f}, {:-f}".format(3.14, -3.14))
 
-    print('int: {0:d}, hex: {0:08x}, oct: {0:o}, bin: {0:010b}'.format(42))
-    print('int: {0:#d}, hex: {0:#08x}, oct: {0:#o}, bin: {0:#010b}'.format(42))
+    print("int: {0:d}, hex: {0:08x}, oct: {0:o}, bin: {0:010b}".format(42))
+    print("int: {0:#d}, hex: {0:#08x}, oct: {0:#o}, bin: {0:#010b}".format(42))
 
-    print('{:,}'.format(1234567890))
+    print("{:,}".format(1234567890))
     # noinspection PyStringFormat
-    print('{:_}'.format(1234567890))  # IntelliJ complains but this format is supported
+    print("{:_}".format(1234567890))  # IntelliJ complains but this format is supported
 
     point = 19
     total = 22
-    print('Correct answers: {:.2%}'.format(point / total))
+    print("Correct answers: {:.2%}".format(point / total))
 
     d = datetime.datetime(2010, 7, 14, 12, 15, 58)
-    print('{:%Y-%m-%d %H:%M:%S}'.format(d))
+    print("{:%Y-%m-%d %H:%M:%S}".format(d))
 
-    for align, text in zip('<^>', ['left', 'center', 'right']):
-        print('{0:{fill}{align}16}'.format(text, fill=align, align=align))
+    for align, text in zip("<^>", ["left", "center", "right"]):
+        print("{0:{fill}{align}16}".format(text, fill=align, align=align))
 
     octets = [192, 168, 0, 1]
-    print('{:02X}.{:02X}.{:02X}.{:02X}'.format(*octets))
+    print("{:02X}.{:02X}.{:02X}.{:02X}".format(*octets))
 
     width = 6
     for num in range(5, 20):
-        for base in 'dXob':
-            print('{0:{width}{base}}'.format(num, width=width, base=base), end=' ')
+        for base in "dXob":
+            print("{0:{width}{base}}".format(num, width=width, base=base), end=" ")
         print()
 
 
@@ -104,16 +113,17 @@ def lists():
     squares = [1, 4, 9, 16, 25]
     # Shallow copy
     # noinspection PyUnusedLocal
+    # ruff: noqa: F841
     squares_copy = squares[:]
 
     cubes = [1, 8, 27, 65, 125]
     cubes[3] = 64
     cubes.append(216)
-    cubes.append(7 ** 3)
+    cubes.append(7**3)
 
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    letters = ["a", "b", "c", "d", "e", "f", "g"]
     print(letters)
-    letters[2:5] = ['C', 'D', 'E']
+    letters[2:5] = ["C", "D", "E"]
     print(letters)
     letters[2:5] = []
     print(letters)
@@ -121,7 +131,7 @@ def lists():
     letters[:] = []
     print(letters)
 
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    letters = ["a", "b", "c", "d", "e", "f", "g"]
     print(f"Len {letters} = {len(letters)}")
 
 
@@ -134,7 +144,7 @@ def fib():
     a, b = 0, 1
     while a < 100:
         a, b = b, a + b
-        print(a, end=', ')
+        print(a, end=", ")
     print()
 
 
@@ -174,7 +184,7 @@ def control_structures():
 
     n = 10000
     r = fib2(n)
-    print(f'fib2(n) = {r}')
+    print(f"fib2(n) = {r}")
 
     def change_param(a, b):
         """
@@ -186,10 +196,10 @@ def control_structures():
         :param b:
         :return:
         """
-        a.append('Gotcha!')
+        a.append("Gotcha!")
         b += 1
 
-    arr = ['a', 'b']
+    arr = ["a", "b"]
     num = 42
     print(f"Before call to change_param: arr: {arr}, num: {num}")
     change_param(arr, num)
@@ -211,20 +221,20 @@ def control_structures():
 
     # Keyword arguments
     # noinspection PyShadowingBuiltins
-    def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
+    def parrot(voltage, state="a stiff", action="voom", type="Norwegian Blue"):
         """Test keyword arguments"""
 
-        print("-- This parrot wouldn't", action, end=' ')
+        print("-- This parrot wouldn't", action, end=" ")
         print("if you put", voltage, "volts through it.")
         print("-- Lovely plumage, the", type)
         print("-- it's", state, "!")
 
     parrot(1000)
     parrot(voltage=1000)
-    parrot(voltage=100000, action='VOOOOM')
-    parrot(action='VOOOOM', voltage=100000)
-    parrot('a million', 'beref of life', 'jump')
-    parrot('a thousand', state='pushing up the daisies')
+    parrot(voltage=100000, action="VOOOOM")
+    parrot(action="VOOOOM", voltage=100000)
+    parrot("a million", "beref of life", "jump")
+    parrot("a thousand", state="pushing up the daisies")
 
     # parrot()
     # parrot(voltage=5.0, 'dead')
@@ -249,11 +259,14 @@ def control_structures():
         for kw in keywords:
             print(kw, ":", keywords[kw])
 
-    cheeseshop("Limburger", "It's very runny, sir",
-               "It's really very, VERY runny, sir.",
-               shopkeeper="Michael Palin",
-               client="John Cleese",
-               sketch="Cheese Shop Sketch")
+    cheeseshop(
+        "Limburger",
+        "It's very runny, sir",
+        "It's really very, VERY runny, sir.",
+        shopkeeper="Michael Palin",
+        client="John Cleese",
+        sketch="Cheese Shop Sketch",
+    )
 
     def standard_arg(arg):
         """Test positional or keyword argument"""
@@ -284,12 +297,16 @@ def control_structures():
     # combined_example("Test combined_example 1",
     #                  "Test combined_example 2",
     #                  "Test combined_example 3")
-    combined_example("Test combined_example 1",
-                     "Test combined_example 2",
-                     kwd_only="Test combined_example 3")
-    combined_example("Test combined_example 1",
-                     standard="Test combined_example 2",
-                     kwd_only="Test combined_example 3")
+    combined_example(
+        "Test combined_example 1",
+        "Test combined_example 2",
+        kwd_only="Test combined_example 3",
+    )
+    combined_example(
+        "Test combined_example 1",
+        standard="Test combined_example 2",
+        kwd_only="Test combined_example 3",
+    )
 
     # combined_example(post_only="Test combined_example 1",
     #                  standard="Test combined_example 2",
@@ -299,24 +316,24 @@ def control_structures():
     def foo(name, **kwargs):
         """Test keyword arguments"""
 
-        return 'name' in kwargs
+        return "name" in kwargs
 
     # noinspection PyUnusedLocal
     def foo2(name, /, **kwargs):
         """Test keyword arguments"""
 
-        return 'name' in kwargs
+        return "name" in kwargs
 
     # This won't work because "name" always bind to the first argument and
     # cannot be reuse as a keyword argument
     try:
-        foo('toto', **{'name': 42, 'z': 0})
+        foo("toto", **{"name": 42, "z": 0})
     except TypeError:
         pass
 
     # This works because in foo2() we're forcing the first parameter to
     # be positional only
-    foo2('toto', **{'name': 42, 'z': 0})
+    foo2("toto", **{"name": 42, "z": 0})
 
     # Unpacking argument lists
     print("Range: ", list(range(3, 6)))  # Normal call with separate arguments
@@ -339,14 +356,14 @@ def control_structures():
     print("Pairs after sorting with lambda", pairs)
 
     # Call annotated function
-    _func_annotations('spam')
+    _func_annotations("spam")
     # These would hint warnings in IntelliJ
     # func_annotations(42)
     # x = func_annotations('bacon') + 4
 
 
 # Function Annotations
-def _func_annotations(ham: str, eggs: str = 'eggs') -> str:
+def _func_annotations(ham: str, eggs: str = "eggs") -> str:
     """
     Test Function Annotations
 
@@ -356,7 +373,7 @@ def _func_annotations(ham: str, eggs: str = 'eggs') -> str:
     """
     print("Annotations: ", _func_annotations.__annotations__)
     print("Arguments:", ham, eggs)
-    return ham + ' and ' + eggs
+    return ham + " and " + eggs
 
 
 def data_structures():
@@ -396,7 +413,7 @@ def data_structures():
     print("But c=a IS a", ". id(a) =", id(a), "and id(c) =", id(c))
 
     # Queue
-    queue = deque(['Eric', 'John', 'Michael'])
+    queue = deque(["Eric", "John", "Michael"])
     print(queue)
     queue.append("Terry")
     queue.append("Graham")
@@ -411,12 +428,16 @@ def data_structures():
     x = 42
     squares = []
     for x in range(10):
-        squares.append(x ** 2)
+        squares.append(x**2)
     print("Unnecessary variable 'x' remains and erased previous value: ", x)
     print("squares:", squares)
-    squares = list(map(lambda xx: xx ** 2, range(10)))  # If x was used here, it would shadow the main x
+    squares = list(
+        map(lambda xx: xx**2, range(10))
+    )  # If x was used here, it would shadow the main x
     print("squares:", squares)
-    squares = [yy ** 2 for yy in range(10)]  # If x was used here, it would shadow the main x
+    squares = [
+        yy**2 for yy in range(10)
+    ]  # If x was used here, it would shadow the main x
     print("squares:", squares)
     assert x == 9
 
@@ -437,12 +458,12 @@ def data_structures():
     print("abs(vec):", [abs(x) for x in vec])
 
     # Call a method on each element
-    freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']
+    freshfruit = ["  banana", "  loganberry ", "passion fruit  "]
     print("Fruits:", freshfruit)
     print("Fruits stripped:", [fruit.strip() for fruit in freshfruit])
 
     # Create a list of 2-tuples from a range
-    print("2-tuples from a range:", [(x, x ** 3) for x in range(6)])
+    print("2-tuples from a range:", [(x, x**3) for x in range(6)])
     # This won't work
     # [x, x**3 for x in range(6)]
 
@@ -463,7 +484,7 @@ def data_structures():
 
     # Tuples
     empty = ()
-    singleton = "one",
+    singleton = ("one",)
     print("empty tuple:", empty)
     print("singleton tuple:", singleton)
     t = tuple(range(5))
@@ -472,13 +493,13 @@ def data_structures():
     print("unpacked tuple:", a, b, c, d, e)
 
     # Sets
-    basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+    basket = {"apple", "orange", "apple", "pear", "orange", "banana"}
     print("set:", basket)
-    print("orange in basket:", 'orange' in basket)
-    print("crabgrass in basket:", 'crabgrass' in basket)
+    print("orange in basket:", "orange" in basket)
+    print("crabgrass in basket:", "crabgrass" in basket)
 
-    a = set('abracadabra')
-    b = set('alacazam')
+    a = set("abracadabra")
+    b = set("alacazam")
     print("sets a & b:", a, "&", b)
     print("a - b:", a - b)
     print("a | b", a | b)
@@ -486,44 +507,44 @@ def data_structures():
     print("a ^ b", a ^ b)
 
     # Set comprehensions
-    a = {x for x in 'abracadabra' if x not in 'abc'}
+    a = {x for x in "abracadabra" if x not in "abc"}
     print("Set comprehension result:", a)
 
     # Dictionary
-    tel = {'jack': 4098, 'sape': 4139}
+    tel = {"jack": 4098, "sape": 4139}
     print("dict:", tel)
-    tel['guido'] = 4127
+    tel["guido"] = 4127
     print("add to dict:", tel)
-    del tel['sape']
+    del tel["sape"]
     print("delete 'sape' from dict", tel)
-    tel['irv'] = 4127
+    tel["irv"] = 4127
     print("add irv to dict", tel)
     print("dict keys in order:", list(tel))
     print("dict keys sorted:", sorted(tel))
-    print("'guido' in dict:", 'guido' in tel)
-    print("'sape' in dict:", 'sape' in tel)
+    print("'guido' in dict:", "guido" in tel)
+    print("'sape' in dict:", "sape" in tel)
 
-    print("dict from tuples:", dict([('sape', 4139), ('guido', 4127), ('jack', 4098)]))
+    print("dict from tuples:", dict([("sape", 4139), ("guido", 4127), ("jack", 4098)]))
 
-    print("dict comprehension", {x: x ** 2 for x in range(6)})
+    print("dict comprehension", {x: x**2 for x in range(6)})
 
     # Looping
-    knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+    knights = {"gallahad": "the pure", "robin": "the brave"}
     for k, v in knights.items():
         print(k, v)
 
-    for i, v in enumerate(['tic', 'tac', 'toe']):
+    for i, v in enumerate(["tic", "tac", "toe"]):
         print(i, v)
 
-    questions = ['name', 'quest', 'favorite color']
-    answers = ['lancelot', 'the holy grail', 'blue']
+    questions = ["name", "quest", "favorite color"]
+    answers = ["lancelot", "the holy grail", "blue"]
     for q, a in zip(questions, answers):
         print("What is your {0}?  It is {1}".format(q, a))
 
     for i in reversed(range(1, 10, 2)):
         print(i)
 
-    basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
+    basket = ["apple", "orange", "apple", "pear", "orange", "banana"]
     for f in sorted(set(basket)):
         print(f)
 
@@ -533,14 +554,17 @@ def exceptions():
 
     class B(Exception):
         """B derives from Exception"""
+
         pass
 
     class C(B):
         """C derives from C"""
+
         pass
 
     class D(C):
         """D derives from C"""
+
         pass
 
     print("Catch exception in the correct order:")
@@ -568,48 +592,48 @@ def exceptions():
     print("\nRaise first exception:")
     # noinspection PyBroadException
     try:
-        f = open('myfile.txt')
+        f = open("myfile.txt")
         s = f.readline()
         _i = int(s.strip())
     except OSError as err:
         print(f"OS error: {err}")
     except ValueError:
         print("Could not convert data to an integer.")
-    except:
+    except Exception:
         print("Unexpected error:", sys.exc_info())
         raise
 
     print("\nRaise second exception:")
     # noinspection PyBroadException
     try:
-        f = open('fibo.py')
+        f = open("fibo.py")
         s = f.readline()
         _i = int(s.strip())
     except OSError as err:
         print(f"OS error: {err}")
     except ValueError:
         print("Could not convert data to an integer.")
-    except:
+    except Exception:
         print("Unexpected error:", sys.exc_info())
         raise
 
     print("\nRaise third exception:")
     # noinspection PyBroadException
     try:
-        f = open('fibo.py')
+        f = open("fibo.py")
         _s = f.readline()
         _i = 1 / 0
     except OSError as err:
         print(f"OS error: {err}")
     except ValueError:
         print("Could not convert data to an integer.")
-    except:
+    except Exception:
         print("Unexpected error:", sys.exc_info())
         # raise
 
     print("\nArguments to Exceptions:")
     try:
-        raise Exception('spam', 'eggs')
+        raise Exception("spam", "eggs")
     except Exception as inst:
         print("Type:", type(inst))
         print("Args:", inst.args)
@@ -620,6 +644,7 @@ def exceptions():
 
     class Error(Exception):
         """Base class for exceptions in this module"""
+
         pass
 
     # noinspection PyUnusedLocal
@@ -658,7 +683,7 @@ def exceptions():
         try:
             raise KeyboardInterrupt
         finally:
-            print('Goodbye, world!')
+            print("Goodbye, world!")
     except BaseException:
         pass
 
@@ -668,6 +693,7 @@ def exceptions():
             return True
         finally:
             return False
+
     assert not bool_return()
 
     # noinspection PyShadowingNames
@@ -681,6 +707,7 @@ def exceptions():
             print("Result is", result)
         finally:
             print("Executing finally clause")
+
     divide(2, 1)
     divide(2, 0)
     try:
@@ -692,13 +719,15 @@ def exceptions():
 
 def scopes():
     """Experiment with scopes"""
+
     def scope_test():
         """Test and compare scopes"""
+
         # noinspection PyShadowingNames
         def do_local():
             """Create a variable in the local scope"""
             # noinspection PyUnusedLocal
-            spam = "local spam"
+            pass
 
         def do_nonlocal():
             """Create a variable in the non-local scope"""
@@ -721,7 +750,10 @@ def scopes():
 
     scope_test()
     # noinspection PyUnboundLocalVariable
-    print("In global scope:", spam)
+    try:
+        print("In global scope:", spam)
+    except NameError:
+        print("spam is not in global scope")
 
 
 def classes():
@@ -730,14 +762,17 @@ def classes():
     # A class created in an "if" is available outside of the test
     a = 1
     if a == 1:
+
         class Foo:
             """Class create in an if branch"""
+
             pass
     else:
         print("No class Foo!")
 
         class Bar:
             """Class never created"""
+
             pass
 
     # noinspection PyUnboundLocalVariable
@@ -754,6 +789,7 @@ def classes():
 
     class ExecutableStatement:
         """Execute statements during class creation"""
+
         def __init__(self):
             print("Class ExecutableStatement instantiated!")
             print("namespace content in __init__:", dir())
@@ -765,11 +801,11 @@ def classes():
         print("namespace content in ExecutableStatement:", dir())
 
     # noinspection PyUnusedLocal
-    es = ExecutableStatement()
     print("namespace content after instantiating 'es':", dir())
 
     class MyClass:
         """A simple example class"""
+
         i = 12345
 
         def __init__(self):
@@ -801,6 +837,7 @@ def classes():
 
     class Complex:
         """A class with initialisation parameters"""
+
         def __init__(self, realpart, imagpart):
             self.r = realpart
             self.i = imagpart
@@ -812,13 +849,13 @@ def classes():
     class Dog:
         """A class with class variables and instance variables"""
 
-        kind = 'canine'
+        kind = "canine"
 
         def __init__(self, name):
             self.name = name
 
-    d = Dog('Fido')
-    e = Dog('Buddy')
+    d = Dog("Fido")
+    e = Dog("Buddy")
     print("Dog d = ", d)
     print("Dog e = ", e)
     print("d.kind = ", d.kind)
@@ -840,10 +877,10 @@ def classes():
             """Add trick to dog… or to class Dog"""
             self.tricks.append(trick)
 
-    d = Dog('Fido')
-    e = Dog('Buddy')
-    d.add_trick('roll over')
-    e.add_trick('play dead')
+    d = Dog("Fido")
+    e = Dog("Buddy")
+    d.add_trick("roll over")
+    e.add_trick("play dead")
     print("Bad Dog: d.tricks = ", d.tricks)
     del d, e, Dog
 
@@ -858,10 +895,10 @@ def classes():
             """Add trick to dog"""
             self.tricks.append(trick)
 
-    d = Dog('Fido')
-    e = Dog('Buddy')
-    d.add_trick('roll over')
-    e.add_trick('play dead')
+    d = Dog("Fido")
+    e = Dog("Buddy")
+    d.add_trick("roll over")
+    e.add_trick("play dead")
     print("Good Dog: d.tricks = ", d.tricks)
     print("Good Dog: e.tricks = ", e.tricks)
 
@@ -869,22 +906,24 @@ def classes():
     # noinspection PyShadowingNames,PyUnusedLocal
     def f1(self, x, y):
         """This function will be used as a method"""
-        return min(x, x+y)
+        return min(x, x + y)
 
     # noinspection PyMethodMayBeStatic,PyUnusedLocal
     class C:
         """Demonstrate that a method body can be outside of class"""
+
         f = f1
 
         def g(self):
             """Sample method"""
-            return 'hello world'
+            return "hello world"
 
         h = g
 
     # noinspection PyUnusedLocal
     class Bag:
         """Methods can call other methods"""
+
         def __init__(self):
             self.data = []
 
@@ -909,7 +948,9 @@ def classes():
 
         def call_b(self):
             """This method from base class can call method from derived class"""
-            print("This method, declared in BaseClass, calls a method that is overloaded in DerivedClass")
+            print(
+                "This method, declared in BaseClass, calls a method that is overloaded in DerivedClass"
+            )
             self.b()
 
         def b(self):
@@ -951,6 +992,7 @@ def classes():
 
     class Reverse:
         """Iterator for looping over q sequence"""
+
         def __init__(self, data):
             self.data = data
             self.index = len(data)
@@ -964,17 +1006,17 @@ def classes():
             self.index -= 1
             return self.data[self.index]
 
-    rev = Reverse('spam')
+    rev = Reverse("spam")
     print("iter(rev) =", iter(rev))
     for char in rev:
         print(char)
 
     def reverse(data):
         """Generator function"""
-        for index in range(len(data)-1, -1, -1):
+        for index in range(len(data) - 1, -1, -1):
             yield data[index]
 
-    for char in reverse('golf'):
+    for char in reverse("golf"):
         print(char)
 
 
@@ -986,18 +1028,25 @@ def stdlib_tour():
     curdir = os.getcwd()
     pid = str(os.getpid())
     print("Current dir:", curdir)
-    os.chdir('/tmp')
+    os.chdir("/tmp")
     print("New current dir:", os.getcwd())
-    os.system('touch python3-tutorial-' + pid)
-    print("Our files in /tmp:", [file for file in os.listdir('/tmp') if 'python3' in file])
+    os.system("touch python3-tutorial-" + pid)
+    print(
+        "Our files in /tmp:", [file for file in os.listdir("/tmp") if "python3" in file]
+    )
 
     import shutil
-    shutil.copyfile('python3-tutorial-' + pid, 'copy-python3-tut-' + pid)
-    print("Our files with current pid in /tmp:", [file for file in os.listdir('/tmp') if pid in file])
+
+    shutil.copyfile("python3-tutorial-" + pid, "copy-python3-tut-" + pid)
+    print(
+        "Our files with current pid in /tmp:",
+        [file for file in os.listdir("/tmp") if pid in file],
+    )
     print("Rename a file")
-    shutil.move('python3-tutorial-' + pid, 'old-python3-tutorial-' + pid)
+    shutil.move("python3-tutorial-" + pid, "old-python3-tutorial-" + pid)
 
     import glob
+
     print("Same list with glob():", glob.glob(f"*{pid}"))
 
     os.chdir(curdir)
@@ -1005,16 +1054,16 @@ def stdlib_tour():
     # Regex
     import re
 
-    s = 'which foot or hand fell fastest'
-    fwords = re.findall(r'\bf[a-z]*', s)
+    s = "which foot or hand fell fastest"
+    fwords = re.findall(r"\bf[a-z]*", s)
     print(f"f-words in '{s}: {fwords}")
-    s2 = 'cat in the the hat'
-    s2_fixed = re.sub(r'(\b[a-z]+) \1', r'\1', s2)
+    s2 = "cat in the the hat"
+    s2_fixed = re.sub(r"(\b[a-z]+) \1", r"\1", s2)
     print(f"Remove redundant words in '{s2}': {s2_fixed}")
 
     import random
 
-    choice = random.choice(['apple', 'pear', 'banana'])
+    choice = random.choice(["apple", "pear", "banana"])
     print("Random fruit from a choice:", choice)
     sample = random.sample(range(100), 10)  # Sampling without replacement
     print("Sampling without replacement:", sample)
@@ -1031,9 +1080,9 @@ def stdlib_tour():
 
     from urllib.request import urlopen
 
-    with urlopen('https://farzy.org/fr/') as response:
+    with urlopen("https://farzy.org/fr/") as response:
         for line in response:
-            line = line.decode('utf-8')
+            line = line.decode("utf-8")
             print(line)
 
     # import smtplib
@@ -1058,7 +1107,7 @@ def stdlib_tour():
 
     import zlib
 
-    s = b'witch which has which witches wrist watch'
+    s = b"witch which has which witches wrist watch"
     print(f"Len of {s} is {len(s)}")
     t = zlib.compress(s)
     print(f"Len of compressed string {t} is {len(t)}")
@@ -1067,8 +1116,8 @@ def stdlib_tour():
 
     from timeit import Timer
 
-    t1 = Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
-    t2 = Timer('a,b = b,a', 'a=1; b=2').timeit()
+    t1 = Timer("t=a; a=b; b=t", "a=1; b=2").timeit()
+    t2 = Timer("a,b = b,a", "a=1; b=2").timeit()
     print(f"Timing comparison of classic swap ({t1}) vs tuple swap ({t2}")
 
 
@@ -1076,7 +1125,8 @@ def stdlib_tour2():
     """Second tour of the Standard Library"""
 
     import reprlib
-    s = set('supercalifragilisticexpialidocious')
+
+    s = set("supercalifragilisticexpialidocious")
     print("Repr of a long Set:", s)
     print("Customized repr of a long Set:", reprlib.repr(s))
     print(stdlib_tour)
@@ -1084,13 +1134,19 @@ def stdlib_tour2():
 
     import pprint
 
-    t = [[[['black', 'cyan'], 'white', ['green', 'red']], [['magenta', 'yellow'], 'blue']]]
+    t = [
+        [
+            [["black", "cyan"], "white", ["green", "red"]],
+            [["magenta", "yellow"], "blue"],
+        ]
+    ]
     print("t=", t)
     print("Now pretty printing t on 30 columns:")
     pprint.pprint(t, width=30)
     print("repr(t) =", reprlib.repr(t))
 
     import textwrap
+
     doc = """The wrap() method is just like fill() except that it returns
     a list of strings instead of one big string with newlines to separate
     the wrapped lines."""
@@ -1101,26 +1157,29 @@ def stdlib_tour2():
 
     import struct
 
-    with open('myfile.zip', 'rb') as f:
+    with open("myfile.zip", "rb") as f:
         data = f.read()
 
     start = 0
-    for i in range(3):                      # Show the first 3 file headers
+    for i in range(3):  # Show the first 3 file headers
         start += 14
-        fields = struct.unpack('<IIIHH', data[start:start+16])
+        fields = struct.unpack("<IIIHH", data[start : start + 16])
         crc32, comp_size, uncomp_size, filesizename, extra_size = fields
 
         start += 16
-        filename = data[start:start+filesizename]
+        filename = data[start : start + filesizename]
         start += filesizename
-        _extra = data[start:start+extra_size]
-        print(f"Zip file #{i+1}: filename {filename}, "
-              f"crc32: {hex(crc32)}, compressed size: {comp_size}, "
-              f"uncompressed size: {uncomp_size}")
+        _extra = data[start : start + extra_size]
+        print(
+            f"Zip file #{i+1}: filename {filename}, "
+            f"crc32: {hex(crc32)}, compressed size: {comp_size}, "
+            f"uncompressed size: {uncomp_size}"
+        )
 
-        start += extra_size + comp_size     # Skip to the next header
+        start += extra_size + comp_size  # Skip to the next header
 
-    import threading, zipfile
+    import threading
+    import zipfile
 
     class AsyncZip(threading.Thread):
         """Asynchronous file zipper"""
@@ -1131,28 +1190,28 @@ def stdlib_tour2():
             self.outfile = outfile
 
         def run(self):
-            f = zipfile.ZipFile(self.outfile, 'w', zipfile.ZIP_DEFLATED)
+            f = zipfile.ZipFile(self.outfile, "w", zipfile.ZIP_DEFLATED)
             f.write(self.infile)
             f.close()
             print("Finished background zip of:", self.infile)
 
-    background = AsyncZip('exercices.py', 'myarchive.zip')
+    background = AsyncZip("exercices.py", "myarchive.zip")
     background.start()
     print("The main program continues to run in foreground.")
 
     background.join()  # Wait for the background task to finish
     print("Main program waited until background was done.")
 
-
     import logging
 
     logging.debug("Debugging information")
     logging.info("Informational message")
-    logging.warning("Warning: config file %s not found", 'server.conf')
+    logging.warning("Warning: config file %s not found", "server.conf")
     logging.error("Error occured")
     logging.critical("Critical error -- shutting down")
 
-    import weakref, gc
+    import weakref
+    import gc
 
     class A:
         def __init__(self, value):
@@ -1161,20 +1220,20 @@ def stdlib_tour2():
         def __repr__(self):
             return str(self.value)
 
-    a = A(10)                           # Create a reference
+    a = A(10)  # Create a reference
     d = weakref.WeakValueDictionary()
-    d['primary'] = a                    # does not create a reference
-    print("Wear ref:", d['primary'])   # fetch the object if it is still alive
-    del a                               # remove the one reference
-    gc.collect()                        # run garbage collection right away
+    d["primary"] = a  # does not create a reference
+    print("Wear ref:", d["primary"])  # fetch the object if it is still alive
+    del a  # remove the one reference
+    gc.collect()  # run garbage collection right away
     try:
-        d['primary']
+        d["primary"]
     except KeyError as e:
         print("Weak ref deleted:", e)
 
     from array import array
 
-    a = array('H', [4000, 10, 700, 22222])
+    a = array("H", [4000, 10, 700, 22222])
     print("sum(array) =", sum(a))
     print("a[1:3] =", a[1:3])
 
@@ -1186,30 +1245,30 @@ def stdlib_tour2():
 
     import bisect
 
-    scores = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]
+    scores = [(100, "perl"), (200, "tcl"), (400, "lua"), (500, "python")]
     print("scores before bisect insort =", scores)
-    bisect.insort(scores, (300, 'ruby'))
+    bisect.insort(scores, (300, "ruby"))
     print("scores after bisect insort =", scores)
 
     from heapq import heapify, heappop, heappush
 
     data = [1, 3, 5, 6, 9, 2, 4, 6, 8, 0]
     print("data before heapify =", data)
-    heapify(data)                               # rearrange the list into heap order
+    heapify(data)  # rearrange the list into heap order
     print("data after heapify =", data)
-    heappush(data, -5)                          # add a new entry
+    heappush(data, -5)  # add a new entry
     print("data after heappush -5 =", data)
     print("Pop three smallest entries:")
-    print([heappop(data) for i in range(3)])    # fetch the three smallest entries
+    print([heappop(data) for i in range(3)])  # fetch the three smallest entries
 
     from decimal import Decimal, getcontext
 
     print("Calculating a 5% tax on a 70 cent charge:")
-    print("Decimal rounding:", round(Decimal('0.70') * Decimal('1.05'), 2))
+    print("Decimal rounding:", round(Decimal("0.70") * Decimal("1.05"), 2))
     print("Float rounding:", round(0.70 * 1.05, 2))
-    assert (Decimal('1.00') % Decimal('0.10')) == Decimal('0.00')
+    assert (Decimal("1.00") % Decimal("0.10")) == Decimal("0.00")
     assert 1.00 % 0.10 != 0.0
-    assert sum([Decimal('0.1')] * 10) == Decimal('1.0')
+    assert sum([Decimal("0.1")] * 10) == Decimal("1.0")
     assert sum([0.1] * 10) != 1.0
 
     getcontext().prec = 36
@@ -1220,6 +1279,7 @@ def stdlib_tour2():
 # This section must be executed by calling exercises.py directly from the command line
 #########################################################################################
 
+
 # Quality control
 def _average(values):
     """Computes the arithmetic mean of a list of numbers.
@@ -1228,10 +1288,6 @@ def _average(values):
     40.0
     """
     return sum(values) / len(values)
-
-
-# Run 'python3 exercices.py' to run doc test and unit test
-import unittest
 
 
 class TestStatisticalFunctions(unittest.TestCase):

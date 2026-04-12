@@ -1,12 +1,13 @@
-
-import collections
 import heapq
 
 # Define the weights for the moves
 LEFT_WEIGHT = 2  # Turning left is more "costly"
-RIGHT_WEIGHT = 1 # Turning right is the baseline cost
+RIGHT_WEIGHT = 1  # Turning right is the baseline cost
 
-def solve_lock_weighted(start_code, target_code, left_weight=LEFT_WEIGHT, right_weight=RIGHT_WEIGHT):
+
+def solve_lock_weighted(
+    start_code, target_code, left_weight=LEFT_WEIGHT, right_weight=RIGHT_WEIGHT
+):
     """
     Calculates the minimum cost path to get from a start code to a target code on a
     weighted N-digit lock.
@@ -48,7 +49,7 @@ def solve_lock_weighted(start_code, target_code, left_weight=LEFT_WEIGHT, right_
     # Priority Queue for Dijkstra's: stores (cost, difference_tuple, path_of_moves)
     # The heap will always return the item with the smallest cost.
     pq = [(0, initial_diff, [])]
-    
+
     # Visited dict to store the minimum cost found so far for each state
     visited_costs = {initial_diff: 0}
 
@@ -68,12 +69,13 @@ def solve_lock_weighted(start_code, target_code, left_weight=LEFT_WEIGHT, right_
         for num_wheels in range(1, n_digits + 1):
             for wheel_to_zero in range(num_wheels):
                 turn_amount = current_diff[wheel_to_zero]
-                if turn_amount == 0: continue
+                if turn_amount == 0:
+                    continue
 
                 new_diff_list = list(current_diff)
                 for i in range(num_wheels):
                     new_diff_list[i] = (new_diff_list[i] - turn_amount) % 10
-                
+
                 new_diff = tuple(new_diff_list)
                 new_cost = cost + left_weight
 
@@ -85,15 +87,18 @@ def solve_lock_weighted(start_code, target_code, left_weight=LEFT_WEIGHT, right_
                     if amount > 5:
                         direction = "down"
                         amount = 10 - amount
-                    
-                    new_path = path + [f"Turn {num_wheels} left wheels {direction} by {amount} (cost: {left_weight})"]
+
+                    new_path = path + [
+                        f"Turn {num_wheels} left wheels {direction} by {amount} (cost: {left_weight})"
+                    ]
                     heapq.heappush(pq, (new_cost, new_diff, new_path))
 
         # Moves starting from the RIGHT (lower cost)
         for num_wheels in range(1, n_digits):
             for wheel_to_zero_idx in range(n_digits - num_wheels, n_digits):
                 turn_amount = current_diff[wheel_to_zero_idx]
-                if turn_amount == 0: continue
+                if turn_amount == 0:
+                    continue
 
                 new_diff_list = list(current_diff)
                 for i in range(n_digits - num_wheels, n_digits):
@@ -110,21 +115,26 @@ def solve_lock_weighted(start_code, target_code, left_weight=LEFT_WEIGHT, right_
                         direction = "down"
                         amount = 10 - amount
 
-                    new_path = path + [f"Turn {num_wheels} right wheels {direction} by {amount} (cost: {right_weight})"]
+                    new_path = path + [
+                        f"Turn {num_wheels} right wheels {direction} by {amount} (cost: {right_weight})"
+                    ]
                     heapq.heappush(pq, (new_cost, new_diff, new_path))
-    
-    return None # Should not be reached
+
+    return None  # Should not be reached
+
 
 if __name__ == "__main__":
     start = "0000"
     target = "1000"
 
-    print(f"Solving for start: {start}, target: {target} with LEFT_WEIGHT={LEFT_WEIGHT}")
-    
+    print(
+        f"Solving for start: {start}, target: {target} with LEFT_WEIGHT={LEFT_WEIGHT}"
+    )
+
     # In this case, turning 1 left wheel is a single move with cost 2.
     # Turning 4 left wheels is also a single move with cost 2.
     # The algorithm should find the single move.
-    
+
     solution = solve_lock_weighted(start, target)
     if solution:
         total_cost, path = solution
@@ -138,12 +148,14 @@ if __name__ == "__main__":
 
     start_complex = "4564"
     target_complex = "4586"
-    print(f"Solving for start: {start_complex}, target: {target_complex} with LEFT_WEIGHT={LEFT_WEIGHT}")
+    print(
+        f"Solving for start: {start_complex}, target: {target_complex} with LEFT_WEIGHT={LEFT_WEIGHT}"
+    )
 
     # The optimal unweighted solution is one move: "Turn 3 left wheels up by 2". Cost = 2
     # Another solution is two moves: "Turn 2 right wheels up by 2", then "Turn 1 right wheel down by 2". Cost = 1+1=2
     # Dijkstra should find one of these paths.
-    
+
     solution_complex = solve_lock_weighted(start_complex, target_complex)
     if solution_complex:
         total_cost, path = solution_complex

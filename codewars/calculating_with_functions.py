@@ -27,6 +27,7 @@ def _number(number):
     If this close receives a function as parameter, it applys the function
     to the number and returns the resulting number.
     """
+
     def f(operation=None):
         if not operation:
             return number
@@ -77,7 +78,7 @@ times = _operation(int.__mul__)
 divided_by = _operation(int.__floordiv__)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     assert zero() == 0
     assert one() == 1
     assert nine() == 9

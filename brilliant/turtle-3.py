@@ -1,57 +1,56 @@
 """Test Turtle from https://docs.python.org/fr/3/library/turtle.html"""
 
-from turtle import *
+import turtle
 
-from turtle import *
-
-width(2)
+turtle.width(2)
 
 
-def circle(radius):
-    penup()
-    forward(radius)
-    pendown()
-    left(90)
-    begin_fill()
-    for i in range(60):
-        forward(3.14 * radius / 30)
-        left(6)
-    end_fill()
-    right(90)
-    penup()
-    back(radius)
-    pendown()
+def draw_circle(radius):
+    turtle.penup()
+    turtle.forward(radius)
+    turtle.pendown()
+    turtle.left(90)
+    turtle.begin_fill()
+    for _ in range(60):
+        turtle.forward(3.14 * radius / 30)
+        turtle.left(6)
+    turtle.end_fill()
+    turtle.right(90)
+    turtle.penup()
+    turtle.back(radius)
+    turtle.pendown()
 
 
 def eye():
     # white of the eye
-    color('black', 'white')
-    begin_fill()
-    circle(50)
-    end_fill()
-    forward(25)
+    turtle.color("black", "white")
+    turtle.begin_fill()
+    draw_circle(50)
+    turtle.end_fill()
+    turtle.forward(25)
     # pupil
-    color('black', 'black')
-    begin_fill()
-    circle(25)
-    end_fill()
-    back(25)
+    turtle.color("black", "black")
+    turtle.begin_fill()
+    draw_circle(25)
+    turtle.end_fill()
+    turtle.back(25)
+
 
 # your code here
-color('red','antique white')
-circle(200)
+turtle.color("red", "antique white")
+draw_circle(200)
 
-penup()
-left(140)
-forward(70)
-pendown()
+turtle.penup()
+turtle.left(140)
+turtle.forward(70)
+turtle.pendown()
 eye()
-penup()
-back(70)
-right(100)
-forward(70)
-pendown()
+turtle.penup()
+turtle.back(70)
+turtle.right(100)
+turtle.forward(70)
+turtle.pendown()
 eye()
 
-hideturtle()
-exitonclick()
+turtle.hideturtle()
+turtle.exitonclick()

@@ -28,7 +28,7 @@ import sys
 import argparse
 import exercices
 
-VERSION = '1.0'
+VERSION = "1.0"
 
 
 def get_modules():
@@ -36,14 +36,16 @@ def get_modules():
 
     # Extract functions whose name does not start with '_' from module
     functions = filter(
-        lambda sym: type(getattr(exercices, sym)) == type(main) and not sym.startswith('_'),
-        dir(exercices)
+        lambda sym: isinstance(getattr(exercices, sym), type(main))
+        and not sym.startswith("_"),
+        dir(exercices),
     )
     functions = list(functions)
     # Do the same with list comprehension
     functions2 = [
-        sym for sym in dir(exercices)
-        if type(getattr(exercices, sym)) == type(main) and not sym.startswith('_')
+        sym
+        for sym in dir(exercices)
+        if isinstance(getattr(exercices, sym), type(main)) and not sym.startswith("_")
     ]
     assert functions == functions2
 
@@ -51,7 +53,9 @@ def get_modules():
     for func_name in functions:
         f = getattr(exercices, func_name)  # Function object
         name = f.__name__  # Function name
-        doc = (f.__doc__.strip() or "NO DOCUMENTATION").splitlines()[0]  # First line of function documentation
+        doc = (f.__doc__.strip() or "NO DOCUMENTATION").splitlines()[
+            0
+        ]  # First line of function documentation
         modules[name] = doc
 
     return modules
@@ -64,13 +68,18 @@ def main():
     functions from the "exercises" module.
     """
 
-    parser = argparse.ArgumentParser(prog="python3-training",
-                                     description="My Python 3 training sessions")
-    parser.add_argument('module', nargs='?', default=None,
-                        help='Execute only one module by name')
-    parser.add_argument('-l', '--list', action='store_true',
-                        help='Display list of modules')
-    parser.add_argument('--version', action='version', version=f'{parser.prog} {VERSION}')
+    parser = argparse.ArgumentParser(
+        prog="python3-training", description="My Python 3 training sessions"
+    )
+    parser.add_argument(
+        "module", nargs="?", default=None, help="Execute only one module by name"
+    )
+    parser.add_argument(
+        "-l", "--list", action="store_true", help="Display list of modules"
+    )
+    parser.add_argument(
+        "--version", action="version", version=f"{parser.prog} {VERSION}"
+    )
     args = parser.parse_args()
 
     # Basic argument parsing
@@ -86,7 +95,8 @@ def main():
             modules = {args.module: modules[args.module]}  # Reduce dict to one element
         except KeyError:
             sys.stderr.write(
-                f"Error: Unknown module {args.module}. Check module list with '{parser.prog} --list'.\n")
+                f"Error: Unknown module {args.module}. Check module list with '{parser.prog} --list'.\n"
+            )
             sys.exit(1)
 
     print("List of exercises:")
@@ -104,5 +114,5 @@ def main():
         f()  # Let exceptions happen
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

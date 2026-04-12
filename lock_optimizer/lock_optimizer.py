@@ -1,5 +1,5 @@
-
 import collections
+
 
 def solve_lock(start_code, target_code):
     """
@@ -52,18 +52,19 @@ def solve_lock(start_code, target_code):
             return path
 
         # --- Generate all possible next states (neighbors) ---
-        
+
         # Moves starting from the LEFT
         for num_wheels in range(1, n_digits + 1):
             # The best amount to turn is one that zeros out one of the wheels in the block
             for wheel_to_zero in range(num_wheels):
                 turn_amount = current_diff[wheel_to_zero]
-                if turn_amount == 0: continue # No use in turning by 0
+                if turn_amount == 0:
+                    continue  # No use in turning by 0
 
                 new_diff_list = list(current_diff)
                 for i in range(num_wheels):
                     new_diff_list[i] = (new_diff_list[i] - turn_amount) % 10
-                
+
                 new_diff = tuple(new_diff_list)
                 if new_diff not in visited:
                     visited.add(new_diff)
@@ -73,15 +74,20 @@ def solve_lock(start_code, target_code):
                     if amount > 5:
                         direction = "down"
                         amount = 10 - amount
-                    
-                    new_path = path + [f"Turn {num_wheels} left wheels {direction} by {amount}"]
+
+                    new_path = path + [
+                        f"Turn {num_wheels} left wheels {direction} by {amount}"
+                    ]
                     queue.append((new_diff, new_path))
 
         # Moves starting from the RIGHT
-        for num_wheels in range(1, n_digits):  # N-digit move is covered by the left-side moves
+        for num_wheels in range(
+            1, n_digits
+        ):  # N-digit move is covered by the left-side moves
             for wheel_to_zero_idx in range(n_digits - num_wheels, n_digits):
                 turn_amount = current_diff[wheel_to_zero_idx]
-                if turn_amount == 0: continue
+                if turn_amount == 0:
+                    continue
 
                 new_diff_list = list(current_diff)
                 for i in range(n_digits - num_wheels, n_digits):
@@ -96,10 +102,13 @@ def solve_lock(start_code, target_code):
                         direction = "down"
                         amount = 10 - amount
 
-                    new_path = path + [f"Turn {num_wheels} right wheels {direction} by {amount}"]
+                    new_path = path + [
+                        f"Turn {num_wheels} right wheels {direction} by {amount}"
+                    ]
                     queue.append((new_diff, new_path))
-    
-    return None # Should not be reached
+
+    return None  # Should not be reached
+
 
 if __name__ == "__main__":
     # Example 1 (N=4)
@@ -113,7 +122,7 @@ if __name__ == "__main__":
             print(f"- {step}")
     else:
         print("No steps needed or no solution found.")
-    
+
     print("-" * 20)
 
     # Example 2 (N=4, more complex)
@@ -141,4 +150,3 @@ if __name__ == "__main__":
             print(f"- {step}")
     else:
         print("No steps needed or no solution found.")
-

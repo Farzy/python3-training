@@ -1,17 +1,17 @@
 """Test Turtle from https://docs.python.org/fr/3/library/turtle.html"""
-from turtle import *
 
+import turtle
 
-title("Bonjour !")
-speed(0)
-color('blue', 'green')
-pensize(3)
+turtle.title("Bonjour !")
+turtle.speed(0)
+turtle.color("blue", "green")
+turtle.pensize(3)
 
-for i in range(1,20):
-    circle(10 * i, 180)
-    stamp()
+for i in range(1, 20):
+    turtle.circle(10 * i, 180)
+    turtle.stamp()
 
-write("Coucou !")
-print(pen()['pencolor'])
-hideturtle()
-exitonclick()
+turtle.write("Coucou !")
+print(turtle.pen()["pencolor"])
+turtle.hideturtle()
+turtle.exitonclick()
