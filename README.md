@@ -61,3 +61,10 @@ All code is under Apache License 2.0.
 
 * [Python 3.10 documentation](https://docs.python.org/3.10/index.html)
 * Most samples come from [The Python Tutorial](https://docs.python.org/3.10/tutorial/index.html)
+
+## Metaheuristics
+
+Min-conflicts and simulated annealing applied to the N-Queens problem, compared with
+the backtracking solver of `eight-queens.py`, are in the `metaheuristics` folder.
+
+*   [Metaheuristics for the N-Queens problem](metaheuristics/README.md)
